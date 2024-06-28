@@ -15,8 +15,8 @@ import wisp from 'wisp-server-node'
 const app = Fastify({
   serverFactory: () =>
     createServer().on('upgrade', (req, socket: Socket, head) => {
-      if (req.url?.startsWith('/wisp/')) socket.destroy()
-      wisp.routeRequest(req, socket, head)
+      if (req.url?.startsWith('/wisp/')) return wisp.routeRequest(req, socket, head)
+      else socket.destroy()
     })
 })
 
