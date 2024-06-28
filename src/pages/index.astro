@@ -14,8 +14,10 @@ import { Search } from 'lucide-solid'
 
 <script>
   import { navigate } from 'astro:transitions/client'
+  // @ts-ignore
+  import { SetTransport } from "@mercuryworkshop/bare-mux"
 
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener('astro:page-load', async () => {
     if (window.location.href.includes('/route')) return
     const input = document.querySelector('input')
 
@@ -25,6 +27,11 @@ import { Search } from 'lucide-solid'
       if (e.key == 'Enter') handleSearch()
     }
     ;(document.querySelector('#enter') as HTMLButtonElement).onclick = handleSearch
+
+    if ('serviceWorker' in navigator) {
+      await navigator.serviceWorker.register('/sw.js', { scope: '/cdn-cgi/' })
+      SetTransport('EpxMod.EpoxyClient', { wisp: 'ws://anura.pro'})
+    }
 
     function handleSearch() {
       if (!input.value) return

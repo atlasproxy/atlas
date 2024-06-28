@@ -34,7 +34,17 @@ export default defineConfig({
           }
         ]
       })
-    ]
+    ],
+    server: {
+      proxy: {
+        "/wisp/": {
+          target: "https://nebulaproxy.io/wisp/",
+          changeOrigin: true,
+          ws: true,
+          rewrite: (path) => path.replace(/^\/wisp\//, "")
+        }
+      }
+    }
   },
   output: 'server',
   adapter: node({
