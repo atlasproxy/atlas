@@ -2,7 +2,10 @@ import { defineConfig } from 'astro/config'
 import tailwind from '@astrojs/tailwind'
 import solidJs from '@astrojs/solid-js'
 import node from '@astrojs/node'
+
 import { viteStaticCopy } from 'vite-plugin-static-copy'
+import wisp from 'wisp-server-node'
+import type { Socket } from 'net'
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,6 +17,16 @@ export default defineConfig({
   ],
   vite: {
     plugins: [
+      {
+        name: 'Development Wisp Server',
+        configureServer(server) {
+          server.httpServer?.on('upgrade', (req, socket, head) => {
+            if (req.url?.startsWith('/wisp/')) {
+              wisp.routeRequest(req, socket as Socket, head)
+            }
+          })
+        }
+      },
       viteStaticCopy({
         targets: [
           {

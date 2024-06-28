@@ -1,14 +1,19 @@
 ---
 import Base from '../layouts/base.astro'
-import { Search } from 'lucide-solid'
+import { Search, Box } from 'lucide-solid'
 ---
 
 <Base>
-  <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 join" transition:name="control">
-    <input transition:persist="input" type="text" class="input bg-base-200 focus:border-base-300 focus:outline-none border-base-300 border-r-0 border-2 w-96 join-item" />
-    <button class="btn btn-square join-item border-base-300 border-l-0 border-2" id="enter">
-      <Search class="h-5 w-5" />
-    </button>
+  <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-4">
+    <div class="flex items-center justify-center gap-5 text-6xl font-semibold">
+      <Box class="h-14 w-14" /> Atlas
+    </div>
+    <div class="join" transition:name="control">
+      <input transition:persist="input" type="text" class="input bg-base-200 focus:border-transparent focus:outline-none w-96 join-item" />
+      <button class="btn btn-square join-item" id="enter">
+        <Search class="h-5 w-5" />
+      </button>
+    </div>
   </div>
 </Base>
 

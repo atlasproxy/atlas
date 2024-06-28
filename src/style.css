@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+
   html {
     @apply bg-zinc-900;
   }

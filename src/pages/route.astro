@@ -2,7 +2,7 @@
 import Base from '../layouts/base.astro'
 import * as Icons from 'lucide-solid'
 
-export const prerender = false;
+export const prerender = false
 ---
 
 <Base>
@@ -12,23 +12,23 @@ export const prerender = false;
     <iframe id="frame" class="h-full w-full"></iframe>
   </div>
 
-  <div class="absolute left-1/2 bottom-4 -translate-x-1/2 join bg-base-200 border-base-300 rounded-btn" transition:name="control">
-    <button class="btn btn-square join-item border-base-300 border-l-0 border-2">
+  <div class="absolute left-1/2 bottom-4 -translate-x-1/2 join rounded-btn bg-base-200" transition:name="control">
+    <button class="btn btn-square join-item">
       <Icons.ChevronLeft class="h-5 w-5" />
     </button>
 
-    <button class="btn btn-square join-item border-base-300 border-l-0 border-2">
+    <button class="btn btn-square join-item">
       <Icons.RotateCw class="h-5 w-5" />
     </button>
 
     <input transition:persist="input" type="text" class="input bg-base-200 focus:border-none focus:outline-none w-96 join-item" />
 
-    <button class="btn btn-square join-item border-base-300 border-l-0 border-2">
+    <button class="btn btn-square join-item">
       <Icons.ArrowUpRightFromSquare class="h-5 w-5" />
     </button>
 
     <a href="/">
-      <button class="btn btn-square join-item border-base-300 border-l-0 border-2">
+      <button class="btn btn-square join-item">
         <Icons.Home class="h-5 w-5" />
       </button>
     </a>
@@ -38,8 +38,11 @@ export const prerender = false;
 <script>
   import { navigate } from 'astro:transitions/client'
   import { encodeXor } from "../lib/formatQuery"
+  import { clearRegistrations, registerSW } from '../lib/sw.ts'
+  // @ts-ignore
+  import { SetTransport } from "@mercuryworkshop/bare-mux"
 
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener('astro:page-load', async () => {
     if (!window.location.href.includes('/route')) return
     const frame: any = document.getElementById('frame')
     const input = document.querySelector('input')
@@ -49,6 +52,12 @@ export const prerender = false;
     console.log(input.value)
     input.blur()
 
-    frame.src = url
+    if ('serviceWorker' in navigator) {
+      await clearRegistrations()
+    await registerSW()
+      SetTransport('EpxMod.EpoxyClient', { wisp: 'ws://anura.pro'})
+
+      frame.src = url
+    }
   })
 </script>
