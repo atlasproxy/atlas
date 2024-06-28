@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/base.astro'
+import { Search } from 'lucide-solid'
+---
+
+<Base>
+  <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 join" transition:name="control">
+    <input transition:persist="input" type="text" class="input bg-base-200 focus:border-base-300 focus:outline-none border-base-300 border-r-0 border-2 w-96 join-item" />
+    <button class="btn btn-square join-item border-base-300 border-l-0 border-2" id="enter">
+      <Search class="h-5 w-5" />
+    </button>
+  </div>
+</Base>
+
+<script>
+  import { navigate } from 'astro:transitions/client'
+
+  document.addEventListener('astro:page-load', () => {
+    if (window.location.href.includes('/route')) return
+    const input = document.querySelector('input')
+
+    input.value = ''
+
+    input.onkeydown = (e) => {
+      if (e.key == 'Enter') handleSearch()
+    }
+    ;(document.querySelector('#enter') as HTMLButtonElement).onclick = handleSearch
+
+    function handleSearch() {
+      if (!input.value) return
+
+      navigate(`/route`)
+    }
+  })
+</script>

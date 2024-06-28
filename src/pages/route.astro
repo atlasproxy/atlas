@@ -1,0 +1,57 @@
+---
+import Base from '../layouts/base.astro'
+import * as Icons from 'lucide-solid'
+
+export const prerender = false;
+---
+
+<Base>
+  <script src="https://unpkg.com/@mercuryworkshop/epoxy-transport@1.1.0/dist/index.js" is:inline></script>
+
+  <div class="h-screen">
+    <iframe src="https://example.com" class="h-full w-full"></iframe>
+  </div>
+
+  <div class="absolute left-1/2 bottom-4 -translate-x-1/2 join bg-base-200 border-base-300 rounded-btn" transition:name="control">
+    <button class="btn btn-square join-item border-base-300 border-l-0 border-2">
+      <Icons.ChevronLeft class="h-5 w-5" />
+    </button>
+
+    <button class="btn btn-square join-item border-base-300 border-l-0 border-2">
+      <Icons.RotateCw class="h-5 w-5" />
+    </button>
+
+    <input transition:persist="input" type="text" class="input bg-base-200 focus:border-none focus:outline-none w-96 join-item" />
+
+    <button class="btn btn-square join-item border-base-300 border-l-0 border-2">
+      <Icons.ArrowUpRightFromSquare class="h-5 w-5" />
+    </button>
+
+    <a href="/">
+      <button class="btn btn-square join-item border-base-300 border-l-0 border-2">
+        <Icons.Home class="h-5 w-5" />
+      </button>
+    </a>
+  </div>
+</Base>
+
+<script>
+  import { navigate } from 'astro:transitions/client'
+  // @ts-ignore
+  import { SetTransport } from "@mercuryworkshop/bare-mux"
+
+  document.addEventListener('astro:page-load', async () => {
+    if (!window.location.href.includes('/route')) return
+
+    const input = document.querySelector('input')
+    if (!input.value) return navigate('/')
+
+    console.log(input.value)
+    input.blur()
+
+    if ('serviceWorker' in navigator) {
+      await navigator.serviceWorker.register('/sw.js')
+      SetTransport('EpxMod.EpoxyClient', { wisp: 'ws://anura.pro'})
+    }
+  })
+</script>
