@@ -7,24 +7,22 @@ export const prerender = false
 
 <Base>
   <script src="https://unpkg.com/@mercuryworkshop/epoxy-transport@2.0.0/dist/index.js" is:inline></script>
-
   <div class="h-screen">
     <iframe id="frame" class="h-full w-full"></iframe>
   </div>
 
-
   <div class="absolute left-1/2 bottom-4 -translate-x-1/2 join rounded-btn bg-base-200" transition:name="control">
-    <button class="btn btn-square join-item" onclick="if (window.history.canGoBack) {window.history.back()}">
+    <button class="btn btn-square join-item" id="back">
       <Icons.ChevronLeft class="h-5 w-5" />
     </button>
 
-    <button class="btn btn-square join-item" onclick="frame.contentWindow.location.reload()">
+    <button class="btn btn-square join-item" id="reload">
       <Icons.RotateCw class="h-5 w-5" />
     </button>
 
-    <input transition:persist="input" type="text" class="input bg-base-200 focus:border-none focus:outline-none w-96 join-item" />
+    <input transition:persist="input" type="text" id="input" class="input bg-base-200 focus:border-none focus:outline-none w-96 join-item" />
 
-    <button class="btn btn-square join-item" onclick="const frame = document.getElementById('frame'); window.open(frame.src)">
+    <button class="btn btn-square join-item" id="open">
       <Icons.ArrowUpRightFromSquare class="h-5 w-5" />
     </button>
 
@@ -37,11 +35,12 @@ export const prerender = false
 </Base>
 
 <script>
+  // Initial iframe loading
   import { navigate } from 'astro:transitions/client'
   import { clearRegistrations, registerSW } from '../lib/sw.ts'
   // @ts-ignore
-  import { SetTransport } from "@mercuryworkshop/bare-mux"
-  import { encodeXor, formatQuery } from "../lib/formatQuery"
+  import { SetTransport } from '@mercuryworkshop/bare-mux'
+  import { encodeXor, formatQuery } from '../lib/formatQuery'
 
   document.addEventListener('astro:page-load', async () => {
     if (!window.location.href.includes('/route')) return
@@ -50,16 +49,65 @@ export const prerender = false
     if (!input.value) return navigate('/')
 
     const preurl = formatQuery(input.value)
-    const url = `${window.location.origin}/cdn-cgi/${encodeXor(preurl)}`
+    const url = `/cdn-cgi/${encodeXor(preurl)}`
     console.log(input.value)
     input.blur()
 
     if ('serviceWorker' in navigator) {
       await clearRegistrations()
       await registerSW()
-      SetTransport('EpxMod.EpoxyClient', { wisp: `${window.location.origin.replace(/^https?:\/\//, 'ws://')}/wisp/` })
+      SetTransport('EpxMod.EpoxyClient', { wisp: `${window.location.protocol == 'https:' ? 'wss' : 'ws'}://${window.location.host}/wisp/` })
 
       frame.src = url
+    }
+  })
+</script>
+
+<script>
+  interface ContentWindow extends Window {
+    __uv$location: Location
+  }
+
+  // Control handling
+  import { ref } from '../lib/utils'
+  import { encodeXor, formatQuery } from '../lib/formatQuery'
+
+  document.addEventListener('astro:page-load', async () => {
+    if (!window.location.href.includes('/route')) return
+
+    const frame = ref('iframe')
+    const contentWindow = frame.contentWindow as ContentWindow
+    const back: HTMLButtonElement = ref('#back')
+    const reload: HTMLButtonElement = ref('#reload')
+    const open: HTMLButtonElement = ref('#open')
+    const input: HTMLInputElement = ref('#input')
+
+    frame.onload = () => {
+      const currentUrl = contentWindow.__uv$location.href
+      console.log(currentUrl)
+    }
+
+    input.onkeydown = (e) => {
+      if (e.key !== 'Enter') return
+
+      const query = input.value
+      frame.src = `/cdn-cgi/${encodeXor(formatQuery(query))}`
+    }
+
+    back.onclick = () => contentWindow.history.back()
+    reload.onclick = () => contentWindow.location.reload()
+    open.onclick = () => {
+      const tab = window.open('about:blank', '_blank')
+      if (!tab) return
+      const iframe = tab.document.createElement('iframe')
+      const stl = iframe.style
+      stl.border = stl.outline = 'none'
+      stl.width = '100vw'
+      stl.height = '100vh'
+      stl.position = 'fixed'
+      stl.left = stl.right = stl.top = stl.bottom = '0'
+      iframe.src = frame.src
+      tab.document.body.appendChild(iframe)
     }
   })
 </script>
