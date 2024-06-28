@@ -75,14 +75,16 @@ export const prerender = false
   document.addEventListener('astro:page-load', async () => {
     if (!window.location.href.includes('/route')) return
 
-    const frame = ref('iframe')
+    const frame = document.querySelector('iframe')
     const contentWindow = frame.contentWindow as ContentWindow
-    const back: HTMLButtonElement = ref('#back')
-    const reload: HTMLButtonElement = ref('#reload')
-    const open: HTMLButtonElement = ref('#open')
-    const input: HTMLInputElement = ref('#input')
+    const back: HTMLButtonElement = document.querySelector('#back')
+    const reload: HTMLButtonElement = document.querySelector('#reload')
+    const open: HTMLButtonElement = document.querySelector('#open')
+    const input: HTMLInputElement = document.querySelector('input')
 
     frame.onload = () => {
+      if (!('__uv$location' in contentWindow)) return
+
       const currentUrl = contentWindow.__uv$location.href
       console.log(currentUrl)
     }
@@ -97,6 +99,7 @@ export const prerender = false
     back.onclick = () => contentWindow.history.back()
     reload.onclick = () => contentWindow.location.reload()
     open.onclick = () => {
+      console.log('hi')
       const tab = window.open('about:blank', '_blank')
       if (!tab) return
       const iframe = tab.document.createElement('iframe')
