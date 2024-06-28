@@ -86,7 +86,7 @@ export const prerender = false
       if (!('__uv$location' in contentWindow)) return
 
       const currentUrl = contentWindow.__uv$location.href
-      console.log(currentUrl)
+      input.value = currentUrl
     }
 
     input.onkeydown = (e) => {
