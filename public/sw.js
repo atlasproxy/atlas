@@ -1,7 +1,7 @@
 importScripts('/cdn/uv.bundle.js');
 importScripts('/cdn/uv.config.js');
 importScripts(__uv$config.sw || '/cdn/uv.sw.js');
-importScripts("https://unpkg.com/@mercuryworkshop/epoxy-transport@1.1.0/dist/index.js");
+importScripts("https://unpkg.com/@mercuryworkshop/epoxy-transport@2.0.0/dist/index.js");
 
 const uv = new UVServiceWorker();
 

@@ -6,7 +6,7 @@ export const prerender = false
 ---
 
 <Base>
-  <script src="https://unpkg.com/@mercuryworkshop/epoxy-transport@1.1.0/dist/index.js" is:inline></script>
+  <script src="https://unpkg.com/@mercuryworkshop/epoxy-transport@2.0.0/dist/index.js" is:inline></script>
 
   <div class="h-screen">
     <iframe id="frame" class="h-full w-full"></iframe>
@@ -57,7 +57,7 @@ export const prerender = false
     if ('serviceWorker' in navigator) {
       await clearRegistrations()
       await registerSW()
-      SetTransport('EpxMod.EpoxyClient', { wisp: 'ws://anura.pro'})
+      SetTransport('EpxMod.EpoxyClient', { wisp: `${window.location.origin.replace(/^https?:\/\//, 'ws://')}/wisp/` })
 
       frame.src = url
     }

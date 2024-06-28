@@ -13,9 +13,9 @@ export async function clearRegistrations() {
 export async function registerSW() {
   if (!('serviceWorker' in navigator)) return
 
-  const registration = await navigator.serviceWorker.register('/sw.js')
+  const registration = await navigator.serviceWorker.register('/sw.js', { scope: '/cdn-cgi/' })
   await registration.update()
 
-  SetTransport('EpxMod.EpoxyClient', { wisp: 'ws://anura.pro' })
+  SetTransport('EpxMod.EpoxyClient', { wisp: `${window.location.origin.replace(/^https?:\/\//, 'ws://')}/wisp/` })
   console.log('Service worker registered')
 }

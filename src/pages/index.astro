@@ -21,6 +21,7 @@ import { Search, Box } from 'lucide-solid'
   import { navigate } from 'astro:transitions/client'
   // @ts-ignore
   import { SetTransport } from "@mercuryworkshop/bare-mux"
+  import { clearRegistrations, registerSW } from '../lib/sw.ts'
 
   document.addEventListener('astro:page-load', async () => {
     if (window.location.href.includes('/route')) return
@@ -34,13 +35,14 @@ import { Search, Box } from 'lucide-solid'
     ;(document.querySelector('#enter') as HTMLButtonElement).onclick = handleSearch
 
     if ('serviceWorker' in navigator) {
-      await navigator.serviceWorker.register('/sw.js', { scope: '/cdn-cgi/' })
+      await clearRegistrations()
+      await registerSW()
       SetTransport('EpxMod.EpoxyClient', { wisp: `${window.location.origin.replace(/^https?:\/\//, 'ws://')}/wisp/` })
-      if (localStorage.getItem('firstRun') !== "true") {
-        console.log('bare client fix trust')
-        localStorage.setItem('firstRun', 'true')
-        window.location.reload()
-      }
+    }
+
+    if (localStorage.getItem('firstRun') !== "true") {
+      localStorage.setItem('firstRun', 'true')
+      window.location.reload()
     }
 
     function handleSearch() {
