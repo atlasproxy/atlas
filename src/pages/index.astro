@@ -40,10 +40,10 @@ import { Search, Box } from 'lucide-solid'
       SetTransport('EpxMod.EpoxyClient', { wisp: `${window.location.origin.replace(/^https?:\/\//, 'ws://')}/wisp/` })
     }
 
-    if (localStorage.getItem('firstRun') !== "true") {
-      localStorage.setItem('firstRun', 'true')
-      window.location.reload()
-    }
+    // if (localStorage.getItem('firstRun') !== "true") {
+    //   localStorage.setItem('firstRun', 'true')
+    //   window.location.reload()
+    // }
 
     function handleSearch() {
       if (!input.value) return

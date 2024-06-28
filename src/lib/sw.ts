@@ -13,7 +13,7 @@ export async function clearRegistrations() {
 export async function registerSW() {
   if (!('serviceWorker' in navigator)) return
 
-  const registration = await navigator.serviceWorker.register('/sw.js', { scope: '/cdn-cgi/' })
+  const registration = await navigator.serviceWorker.register('/sw.js')
   await registration.update()
 
   SetTransport('EpxMod.EpoxyClient', { wisp: `${window.location.origin.replace(/^https?:\/\//, 'ws://')}/wisp/` })
