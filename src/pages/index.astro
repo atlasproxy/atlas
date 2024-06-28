@@ -34,8 +34,13 @@ import { Search, Box } from 'lucide-solid'
     ;(document.querySelector('#enter') as HTMLButtonElement).onclick = handleSearch
 
     if ('serviceWorker' in navigator) {
-      await navigator.serviceWorker.register('/sw.js', { scope: '/cdn-cgi/' })
-      SetTransport('EpxMod.EpoxyClient', { wisp: 'ws://anura.pro'})
+      await navigator.serviceWorker.register('/sw.js', { scope: '/cdn-cgi/' }).then(() => {
+        SetTransport('EpxMod.EpoxyClient', { wisp: `${window.location.origin.replace(/^https?:\/\//, 'ws://')}/wisp/` })
+        if (localStorage.getItem('firstRun') !== "true") {
+          localStorage.setItem('firstRun', 'true')
+          window.location.reload()
+        }
+      })
     }
 
     function handleSearch() {

@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "start": "tsx server.ts",
     "build": "astro build",
+    "bstart": "astro build && tsx server.ts",
     "preview": "astro preview",
     "astro": "astro"
   },

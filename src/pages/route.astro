@@ -12,18 +12,19 @@ export const prerender = false
     <iframe id="frame" class="h-full w-full"></iframe>
   </div>
 
-  <div class="absolute left-1/2 bottom-4 -translate-x-1/2 join rounded-btn bg-base-200" transition:name="control">
-    <button class="btn btn-square join-item">
+
+  <div class="absolute left-1/2 bottom-4 -translate-x-1/2 join bg-base-200 border-base-300 rounded-btn" transition:name="control">
+    <button class="btn btn-square join-item border-base-300 border-l-0 border-2" onclick="if (window.history.canGoBack) {window.history.back()}">
       <Icons.ChevronLeft class="h-5 w-5" />
     </button>
 
-    <button class="btn btn-square join-item">
+    <button class="btn btn-square join-item border-base-300 border-l-0 border-2" onclick="frame.contentWindow.location.reload()">
       <Icons.RotateCw class="h-5 w-5" />
     </button>
 
     <input transition:persist="input" type="text" class="input bg-base-200 focus:border-none focus:outline-none w-96 join-item" />
 
-    <button class="btn btn-square join-item">
+    <button class="btn btn-square join-item border-base-300 border-l-0 border-2" onclick="const frame = document.getElementById('frame'); window.open(frame.src)">
       <Icons.ArrowUpRightFromSquare class="h-5 w-5" />
     </button>
 
@@ -37,10 +38,10 @@ export const prerender = false
 
 <script>
   import { navigate } from 'astro:transitions/client'
-  import { encodeXor } from "../lib/formatQuery"
   import { clearRegistrations, registerSW } from '../lib/sw.ts'
   // @ts-ignore
   import { SetTransport } from "@mercuryworkshop/bare-mux"
+  import { encodeXor, formatQuery } from "../lib/formatQuery"
 
   document.addEventListener('astro:page-load', async () => {
     if (!window.location.href.includes('/route')) return
@@ -48,13 +49,14 @@ export const prerender = false
     const input = document.querySelector('input')
     if (!input.value) return navigate('/')
 
-    const url = `${window.location.origin}/cdn-cgi/${encodeXor(input.value)}`
+    const preurl = formatQuery(input.value)
+    const url = `${window.location.origin}/cdn-cgi/${encodeXor(preurl)}`
     console.log(input.value)
     input.blur()
 
     if ('serviceWorker' in navigator) {
       await clearRegistrations()
-    await registerSW()
+      await registerSW()
       SetTransport('EpxMod.EpoxyClient', { wisp: 'ws://anura.pro'})
 
       frame.src = url
