@@ -1,17 +1,14 @@
 ---
 import Base from '../layouts/base.astro'
 import * as Icons from 'lucide-solid'
-
-export const prerender = false
 ---
 
 <Base>
-  <script src="https://unpkg.com/@mercuryworkshop/epoxy-transport@2.0.0/dist/index.js" is:inline></script>
-  <div class="h-screen">
+  <div class="h-screen w-screen z-40 absolute top-0 left-0">
     <iframe id="frame" class="h-full w-full"></iframe>
   </div>
 
-  <div class="absolute left-1/2 bottom-4 -translate-x-1/2 join rounded-btn bg-base-200" transition:name="control">
+  <div class="absolute left-1/2 bottom-4 -translate-x-1/2 join rounded-btn bg-base-200 z-50" transition:name="control">
     <button class="btn btn-square join-item" id="back">
       <Icons.ChevronLeft class="h-5 w-5" strokeWidth={2.5} />
     </button>
@@ -32,6 +29,11 @@ export const prerender = false
       </button>
     </a>
   </div>
+
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-3 z-10" id="loader">
+    <h1 class="text-4xl font-semibold">Loading</h1>
+    <span class="loading loading-dots w-14"></span>
+  </div>
 </Base>
 
 <script>
@@ -43,10 +45,11 @@ export const prerender = false
   import { encodeXor, formatQuery } from '../lib/formatQuery'
 
   document.addEventListener('astro:page-load', async () => {
-    if (!window.location.href.includes('/route')) return
+    if (window.location.pathname !== '/route') return
+
     const frame: any = document.getElementById('frame')
     const input = document.querySelector('input')
-    if (!input.value) return navigate('/')
+    if (!input.value) input.value = 'https://google.com'
 
     const preurl = formatQuery(input.value)
     const url = `/cdn-cgi/${encodeXor(preurl)}`
@@ -56,7 +59,6 @@ export const prerender = false
     if ('serviceWorker' in navigator) {
       await clearRegistrations()
       await registerSW()
-      SetTransport('EpxMod.EpoxyClient', { wisp: `${window.location.protocol == 'https:' ? 'wss' : 'ws'}://${window.location.host}/wisp/` })
 
       frame.src = url
     }
@@ -81,12 +83,14 @@ export const prerender = false
     const reload: HTMLButtonElement = document.querySelector('#reload')
     const open: HTMLButtonElement = document.querySelector('#open')
     const input: HTMLInputElement = document.querySelector('input')
+    const loader: HTMLDivElement = document.querySelector('#loader')
 
     frame.onload = () => {
       if (!('__uv$location' in contentWindow)) return
 
       const currentUrl = contentWindow.__uv$location.href
       input.value = currentUrl
+      loader.style.display = 'none'
     }
 
     input.onkeydown = (e) => {

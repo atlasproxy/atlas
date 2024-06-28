@@ -1,0 +1,56 @@
+---
+import Page from '../layouts/page.astro'
+import Setting from '../components/setting.astro'
+import * as Icons from 'lucide-solid'
+---
+
+<Page>
+  <h1 class="text-5xl text-center font-semibold pt-20">Settings</h1>
+
+  <div class="box-border flex flex-wrap justify-center gap-6 p-8">
+    <Setting>
+      <span slot="title">Panic Key</span>
+
+      <input type="text" class="input w-full" />
+    </Setting>
+
+    <Setting>
+      <span slot="title">Proxy</span>
+
+      <select class="select w-full" id="proxy">
+        <option selected>Ultraviolet</option>
+        <option disabled>Scramjet</option>
+      </select>
+    </Setting>
+
+    <Setting>
+      <span slot="title">Transport</span>
+
+      <select class="select w-full" onchange="">
+        <option selected>Epoxy</option>
+        <option>Libcurl</option>
+      </select>
+    </Setting>
+
+    <Setting>
+      <span slot="title">Wisp Server</span>
+
+      <input type="text" id="wisp" class="input w-full" />
+    </Setting>
+  </div>
+</Page>
+
+<script>
+  import { defaultWispUrl } from '../lib/sw'
+  document.addEventListener('astro:page-load', () => {
+    if (window.location.pathname !== '/settings') return
+    var wispUrl = defaultWispUrl
+
+    const wispInp: HTMLInputElement = document.querySelector('#wisp')
+    wispInp.value = wispUrl
+
+    wispInp.onchange = (e) => {
+
+    }
+  })
+</script>

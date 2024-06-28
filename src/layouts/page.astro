@@ -1,0 +1,43 @@
+---
+import Base from './base.astro'
+import * as Icons from 'lucide-solid'
+---
+
+<Base>
+  <div class="absolute top-4 left-1/2 -translate-x-1/2">
+    <div class="join">
+      <a href="/">
+        <button data-route="/" class="navbtn btn join-item btn-sm">
+          <Icons.Home class="h-4 w-4" /> Home
+        </button>
+      </a>
+
+      <a>
+        <button data-route="/favorites" class="navbtn btn join-item btn-sm">
+          <Icons.Star class="h-4 w-4" /> Favorites
+        </button>
+      </a>
+
+      <a href="/settings">
+        <button data-route="/settings" class="navbtn btn join-item btn-sm">
+          <Icons.Settings2 class="h-4 w-4" /> Settings
+        </button>
+      </a>
+    </div>
+  </div>
+
+  <slot />
+</Base>
+
+<script is:inline data-astro-rerun>
+  var buttons = document.querySelectorAll('.navbtn')
+  var toggledClass = "btn-primary"
+
+  buttons.forEach((btn) => {
+    btn.classList.remove(toggledClass)
+
+    if (btn.dataset.route == window.location.pathname) {
+      btn.classList.add(toggledClass)
+    }
+  })
+</script>

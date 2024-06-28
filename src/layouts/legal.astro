@@ -1,0 +1,14 @@
+---
+import Base from './base.astro'
+import { ChevronLeft } from 'lucide-solid'
+---
+
+<Base>
+  <div class="p-6">
+    <a href="/"><button class="btn mb-6"><ChevronLeft class="h-5 w-5" /> Go back</button></a>
+
+    <div class="prose">
+      <slot />
+    </div>
+  </div>
+</Base>

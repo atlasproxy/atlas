@@ -10,12 +10,14 @@ export async function clearRegistrations() {
   }
 }
 
+export const defaultWispUrl = `${window.location.origin.replace(/^https?:\/\//, 'ws://')}/wisp/`
+
 export async function registerSW() {
   if (!('serviceWorker' in navigator)) return
 
   const registration = await navigator.serviceWorker.register('/sw.js')
   await registration.update()
 
-  SetTransport('EpxMod.EpoxyClient', { wisp: `${window.location.origin.replace(/^https?:\/\//, 'ws://')}/wisp/` })
+  SetTransport('EpxMod.EpoxyClient', { wisp: defaultWispUrl })
   console.log('Service worker registered')
 }

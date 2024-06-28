@@ -1,51 +1,58 @@
 ---
-import Base from '../layouts/base.astro'
-import { Search, Box } from 'lucide-solid'
+import Page from '../layouts/page.astro'
+import * as Icons from 'lucide-solid'
 ---
 
-
-<Base>
-  <script src="https://unpkg.com/@mercuryworkshop/epoxy-transport@2.0.0/dist/index.js" is:inline></script>
+<Page>
   <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col gap-4">
     <div class="flex items-center justify-center gap-5 text-6xl font-semibold">
-      <Box class="h-14 w-14" /> Atlas
+      <Icons.Box class="h-14 w-14" /> Atlas
     </div>
+
     <div class="join" transition:name="control">
       <input transition:persist="input" type="text" class="input bg-base-200 focus:border-transparent focus:outline-none w-96 join-item" />
       <button class="btn btn-square join-item" id="enter">
-        <Search class="h-5 w-5" />
+        <Icons.Search class="h-5 w-5" />
       </button>
     </div>
   </div>
-</Base>
+
+  <div class="absolute w-screen bottom-0 flex items-center justify-between p-3 px-6">
+    <div class="flex items-center gap-6">
+      <a class="link link-hover underline-offset-2" href="/legal/terms">Terms of Service</a>
+      <a class="link link-hover underline-offset-2" href="/legal/privacy">Privacy Policy</a>
+    </div>
+
+    <div class="flex items-center gap-6">
+      <a class="link link-hover underline-offset-2">Discord</a>
+      <a class="link link-hover underline-offset-2">Source Code</a>
+    </div>
+  </div>
+</Page>
 
 <script>
   import { navigate } from 'astro:transitions/client'
   // @ts-ignore
-  import { SetTransport } from "@mercuryworkshop/bare-mux"
+  import { SetTransport } from '@mercuryworkshop/bare-mux'
   import { clearRegistrations, registerSW } from '../lib/sw.ts'
 
   document.addEventListener('astro:page-load', async () => {
-    if (window.location.href.includes('/route')) return
+    if (window.location.pathname !== '/') return
+
     const input = document.querySelector('input')
+    const btn: HTMLButtonElement = document.querySelector('#enter')
 
     input.value = ''
 
     input.onkeydown = (e) => {
       if (e.key == 'Enter') handleSearch()
     }
-    ;(document.querySelector('#enter') as HTMLButtonElement).onclick = handleSearch
+    btn.onclick = handleSearch
 
     if ('serviceWorker' in navigator) {
       await clearRegistrations()
       await registerSW()
-      SetTransport('EpxMod.EpoxyClient', { wisp: `${window.location.origin.replace(/^https?:\/\//, 'ws://')}/wisp/` })
     }
-
-    // if (localStorage.getItem('firstRun') !== "true") {
-    //   localStorage.setItem('firstRun', 'true')
-    //   window.location.reload()
-    // }
 
     function handleSearch() {
       if (!input.value) return
