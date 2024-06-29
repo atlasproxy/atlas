@@ -74,7 +74,7 @@ import * as Icons from 'lucide-solid'
   import { encodeXor, formatQuery } from '../lib/formatQuery'
 
   document.addEventListener('astro:page-load', async () => {
-    if (!window.location.href.includes('/route')) return
+    if (!window.location.pathname.includes("/settings")) return
 
     const frame = document.querySelector('iframe')
     const contentWindow = frame.contentWindow as ContentWindow
