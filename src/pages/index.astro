@@ -35,9 +35,12 @@ import * as Icons from 'lucide-solid'
   // @ts-ignore
   import { SetTransport } from '@mercuryworkshop/bare-mux'
   import { clearRegistrations, registerSW } from '../lib/sw.ts'
+  import toast from 'solid-toast'
 
   document.addEventListener('astro:page-load', async () => {
     if (window.location.pathname !== '/') return
+
+    toast.success('skibidi toast')
 
     const input = document.querySelector('input')
     const btn: HTMLButtonElement = document.querySelector('#enter')

@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions, fade } from 'astro:transitions'
+import { Toaster } from 'solid-toast'
 
 import '../style.css'
 ---
@@ -22,6 +23,9 @@ import '../style.css'
     <title>Atlas</title>
   </head>
   <body>
+    <div class="toast toast-end">
+      <Toaster client:load />
+    </div>
     <slot />
   </body>
 </html>

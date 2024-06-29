@@ -23,8 +23,8 @@ import * as Icons from 'lucide-solid'
       <Icons.ArrowUpRightFromSquare class="h-5 w-5" strokeWidth={2.5} />
     </button>
 
-    <button class="btn btn-square join-item" id="fav">
-      <Icons.Star class="h-5 w-5" id="fav-icn" fill="none" strokeWidth={2.5}/>
+    <button class="btn btn-square join-item" id="bookmark">
+      <Icons.Bookmark class="h-5 w-5" id="fav-icn" fill="none" strokeWidth={2.5} id="bm-icon" />
     </button>
 
     <a href="/">
@@ -48,10 +48,15 @@ import * as Icons from 'lucide-solid'
   import { encodeXor, formatQuery } from '../lib/formatQuery'
 
   document.addEventListener('astro:page-load', async () => {
-    if (window.location.pathname !== '/route') return
+    if (!window.location.pathname.includes('/route')) return
 
     const frame: any = document.getElementById('frame')
     const input = document.querySelector('input')
+    const urlParams = new URLSearchParams(window.location.search)
+    if (urlParams.get('q')) input.value = decodeURIComponent(atob(urlParams.get('q')))
+    urlParams.delete('q')
+    window.history.replaceState(null, '', '/route')
+
     if (!input.value) input.value = 'https://google.com'
 
     const preurl = formatQuery(input.value)
@@ -78,13 +83,15 @@ import * as Icons from 'lucide-solid'
   import store from 'store2'
 
   document.addEventListener('astro:page-load', async () => {
+    if (!window.location.pathname.includes('/route')) return
+
     const frame = document.querySelector('iframe')
     const contentWindow = frame.contentWindow as ContentWindow
-    const contentDocument = frame.contentDocument as Document
     const back: HTMLButtonElement = document.querySelector('#back')
     const reload: HTMLButtonElement = document.querySelector('#reload')
     const open: HTMLButtonElement = document.querySelector('#open')
-    const fav: HTMLButtonElement = document.querySelector('#fav')
+    const bookmark: HTMLButtonElement = document.querySelector('#bookmark')
+    const bmIcon: HTMLButtonElement = document.querySelector('#bm-icon')
     const input: HTMLInputElement = document.querySelector('input')
     const loader: HTMLDivElement = document.querySelector('#loader')
     let isFav = false
@@ -96,6 +103,16 @@ import * as Icons from 'lucide-solid'
       input.value = currentUrl
       isFav = false
       loader.style.display = 'none'
+
+      store.set('bookmarks', [], false)
+      const shortcuts: any[] = store('bookmarks')
+      if (shortcuts.some((value) => value.url == contentWindow.__uv$location.href)) {
+        bmIcon.classList.remove('fill-none')
+        bmIcon.classList.add('fill-current')
+      } else {
+        bmIcon.classList.remove('fill-current')
+        bmIcon.classList.add('fill-none')
+      }
     }
 
     input.onkeydown = (e) => {
@@ -107,9 +124,33 @@ import * as Icons from 'lucide-solid'
 
     back.onclick = () => contentWindow.history.back()
     reload.onclick = () => contentWindow.location.reload()
-    fav.onclick = () => {
-      
+
+    bookmark.onclick = () => {
+      store.set('bookmarks', [], false)
+
+      const bookmarks: any[] = store('bookmarks')
+
+      if (bookmarks.some((value) => value.url == contentWindow.__uv$location.href)) {
+        store(
+          'bookmarks',
+          bookmarks.filter((value) => value.url !== contentWindow.__uv$location.href)
+        )
+        bmIcon.classList.remove('fill-current')
+        bmIcon.classList.add('fill-none')
+      } else {
+        store('bookmarks', [
+          ...store('bookmarks'),
+          {
+            image: (contentWindow.document.querySelector("link[rel*='icon']") as HTMLLinkElement)?.href || `${contentWindow.__uv$location.origin}/favicon.ico`,
+            title: contentWindow.document.title,
+            url: contentWindow.__uv$location.href
+          }
+        ])
+        bmIcon.classList.remove('fill-none')
+        bmIcon.classList.add('fill-current')
+      }
     }
+
     open.onclick = () => {
       console.log('hi')
       const tab = window.open('about:blank', '_blank')
