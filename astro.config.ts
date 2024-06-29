@@ -29,6 +29,7 @@ export default defineConfig({
                 /xhamster\.com/,
                 /youporn\.com/
               ]
+              logging.level = logging.DEBUG
             }
           })
         }
