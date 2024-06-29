@@ -7,8 +7,12 @@ import fastifyStatic from '@fastify/static'
 import { fileURLToPath } from 'node:url'
 import { createServer } from 'node:http'
 import type { Socket } from 'node:net'
-import wisp from 'wisp-server-node'
-
+// @ts-ignore
+import { server as wisp, logging } from "@mercuryworkshop/wisp-js/server";
+logging.level = logging.DEBUG;
+wisp.options.hostname_blacklist = [
+  /pornhub\.com/,
+]
 const app = Fastify({
   serverFactory: () =>
     createServer().on('upgrade', (req, socket: Socket, head) => {

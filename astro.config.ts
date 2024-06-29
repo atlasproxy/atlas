@@ -3,7 +3,8 @@ import tailwind from '@astrojs/tailwind'
 import solidJs from '@astrojs/solid-js'
 
 import { viteStaticCopy } from 'vite-plugin-static-copy'
-import wisp from 'wisp-server-node'
+// @ts-ignore
+import { server as wisp, logging } from "@mercuryworkshop/wisp-js/server";
 import type { Socket } from 'net'
 
 // https://astro.build/config
@@ -15,15 +16,6 @@ export default defineConfig({
     solidJs()
   ],
   vite: {
-    // server: {
-    //   proxy: {
-    //     '/wisp/': {
-    //       target: 'http://localhost:4000/wisp/',
-    //       changeOrigin: true,
-    //       ws: true
-    //     }
-    //   }
-    // },
     plugins: [
       {
         name: 'Development Wisp Server',
@@ -31,6 +23,13 @@ export default defineConfig({
           server.httpServer?.on('upgrade', (req, socket, head) => {
             if (req.url?.endsWith('/wisp/')) {
               wisp.routeRequest(req, socket as Socket, head)
+              wisp.options.hostname_blacklist = [
+                /pornhub\.com/,
+                /xvideos\.com/,
+                /hentaiheaven\.com/,
+                /xhamster\.com/,
+                /youporn\.com/
+              ]
             }
           })
         }
