@@ -23,6 +23,10 @@ import * as Icons from 'lucide-solid'
       <Icons.ArrowUpRightFromSquare class="h-5 w-5" strokeWidth={2.5} />
     </button>
 
+    <button class="btn btn-square join-item" id="fav">
+      <Icons.Star class="h-5 w-5" id="fav-icn" fill="none" strokeWidth={2.5}/>
+    </button>
+
     <a href="/">
       <button class="btn btn-square join-item">
         <Icons.Home class="h-5 w-5" strokeWidth={2.5} />
@@ -41,7 +45,6 @@ import * as Icons from 'lucide-solid'
   import { navigate } from 'astro:transitions/client'
   import { clearRegistrations, registerSW } from '../lib/sw.ts'
   // @ts-ignore
-  import { SetTransport } from '@mercuryworkshop/bare-mux'
   import { encodeXor, formatQuery } from '../lib/formatQuery'
 
   document.addEventListener('astro:page-load', async () => {
@@ -72,23 +75,26 @@ import * as Icons from 'lucide-solid'
 
   // Control handling
   import { encodeXor, formatQuery } from '../lib/formatQuery'
+  import store from 'store2'
 
   document.addEventListener('astro:page-load', async () => {
-    if (!window.location.pathname.includes("/settings")) return
-
     const frame = document.querySelector('iframe')
     const contentWindow = frame.contentWindow as ContentWindow
+    const contentDocument = frame.contentDocument as Document
     const back: HTMLButtonElement = document.querySelector('#back')
     const reload: HTMLButtonElement = document.querySelector('#reload')
     const open: HTMLButtonElement = document.querySelector('#open')
+    const fav: HTMLButtonElement = document.querySelector('#fav')
     const input: HTMLInputElement = document.querySelector('input')
     const loader: HTMLDivElement = document.querySelector('#loader')
+    let isFav = false
 
     frame.onload = () => {
       if (!('__uv$location' in contentWindow)) return
 
       const currentUrl = contentWindow.__uv$location.href
       input.value = currentUrl
+      isFav = false
       loader.style.display = 'none'
     }
 
@@ -101,6 +107,9 @@ import * as Icons from 'lucide-solid'
 
     back.onclick = () => contentWindow.history.back()
     reload.onclick = () => contentWindow.location.reload()
+    fav.onclick = () => {
+      
+    }
     open.onclick = () => {
       console.log('hi')
       const tab = window.open('about:blank', '_blank')
