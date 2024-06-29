@@ -5,7 +5,6 @@ import solidJs from '@astrojs/solid-js'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 // @ts-ignore
 import { server as wisp, logging } from "@mercuryworkshop/wisp-js/server";
-import type { Socket } from 'net'
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,7 +21,7 @@ export default defineConfig({
         configureServer(server) {
           server.httpServer?.on('upgrade', (req, socket, head) => {
             if (req.url?.endsWith('/wisp/')) {
-              wisp.routeRequest(req, socket as Socket, head)
+              wisp.routeRequest(req, socket, head)
               wisp.options.hostname_blacklist = [
                 /pornhub\.com/,
                 /xvideos\.com/,
