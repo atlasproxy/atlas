@@ -8,7 +8,8 @@
     "build": "astro build",
     "bstart": "astro build && tsx server.ts",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postinstall": "cd node_modules/wisp-server-node && npm install && npm run build"
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",

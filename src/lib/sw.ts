@@ -18,6 +18,6 @@ export async function registerSW() {
   const registration = await navigator.serviceWorker.register('/sw.js')
   await registration.update()
 
-  SetTransport('EpxMod.EpoxyClient', { wisp: defaultWispUrl })
+  SetTransport('CurlMod.LibcurlClient', { wisp: defaultWispUrl })
   console.log('Service worker registered')
 }
