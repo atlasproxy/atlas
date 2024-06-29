@@ -4,7 +4,7 @@ import solidJs from '@astrojs/solid-js'
 
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 // @ts-ignore
-import { server as wisp, logging } from "@mercuryworkshop/wisp-js/server";
+import { server as wisp } from "@mercuryworkshop/wisp-js/server";
 
 // https://astro.build/config
 export default defineConfig({
@@ -29,7 +29,6 @@ export default defineConfig({
                 /xhamster\.com/,
                 /youporn\.com/
               ]
-              logging.level = logging.DEBUG
             }
           })
         }
