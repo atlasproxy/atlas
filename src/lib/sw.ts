@@ -11,7 +11,7 @@ export async function clearRegistrations() {
 }
 
 // please stop changing this
-export const defaultWispUrl = `${window.location.protocol == 'https:' ? 'wss' : 'ws'}://api.${window.location.host}/wisp/`
+export const defaultWispUrl = `${window.location.protocol == 'https:' ? 'wss' : 'ws'}://${window.location.host}/wisp/`
 
 export async function registerSW() {
   if (!('serviceWorker' in navigator)) return
