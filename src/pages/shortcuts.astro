@@ -1,6 +1,35 @@
 ---
 import PageLayout from '../layouts/page.astro'
 export const prerender = false
+
+const res = await fetch(new URL('/data/shortcuts.json', Astro.url))
+const shortcuts: Shortcut[] = await res.json()
+
+interface Shortcut {
+  title: string
+  image: string
+  url: string
+}
 ---
 
-<PageLayout />
+<PageLayout>
+  <div class="flex justify-center gap-4 flex-wrap px-16 mt-20">
+    {
+      shortcuts.map((shortcut) => (
+        <div class="card bg-base-200 image-full aspect-video w-80 shadow-xl">
+          <figure>
+            <img src={shortcut.image} alt={shortcut.title} class="object-full h-full w-full" />
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title text-3xl font-bold text-base-content">{shortcut.title}</h2>
+            <div class="card-actions absolute bottom-4 right-4 justify-end">
+              <a href={`/route?q=${encodeURIComponent(btoa(shortcut.url))}`}>
+                <button class="btn btn-primary ">Launch</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</PageLayout>
