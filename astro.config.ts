@@ -1,10 +1,11 @@
 import { defineConfig } from 'astro/config'
 import tailwind from '@astrojs/tailwind'
 import solidJs from '@astrojs/solid-js'
-
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 // @ts-ignore
-import { server as wisp } from "@mercuryworkshop/wisp-js/server";
+import { server as wisp } from '@mercuryworkshop/wisp-js/server'
+
+import node from '@astrojs/node'
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,13 +23,7 @@ export default defineConfig({
           server.httpServer?.on('upgrade', (req, socket, head) => {
             if (req.url?.endsWith('/wisp/')) {
               wisp.routeRequest(req, socket, head)
-              wisp.options.hostname_blacklist = [
-                /pornhub\.com/,
-                /xvideos\.com/,
-                /hentaiheaven\.com/,
-                /xhamster\.com/,
-                /youporn\.com/
-              ]
+              wisp.options.hostname_blacklist = [/pornhub\.com/, /xvideos\.com/, /hentaiheaven\.com/, /xhamster\.com/, /youporn\.com/]
             }
           })
         }
@@ -70,5 +65,9 @@ export default defineConfig({
         ]
       })
     ]
-  }
+  },
+  output: 'hybrid',
+  adapter: node({
+    mode: 'middleware'
+  })
 })
