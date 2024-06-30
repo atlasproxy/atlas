@@ -1,5 +1,6 @@
 <div align="center">
   <img src="./public/wordmark.svg" height="75" /> <br /> <br>
+  Minimalism at its peak.
 </div>
 
 <hr />
