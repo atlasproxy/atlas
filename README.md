@@ -13,11 +13,11 @@ Atlas is a minimalistic proxy service packed with important features for a simpl
 
 `🔖 Bookmarks` Save the tab you're browsing on to come back to it later.
 
-`⚙️ Customization` Personalize Atlas just the way you like it, with a wide range of different settings to customize.
+`🧩 Customization` Personalize Atlas just the way you like it, with a wide range of different settings to customize.
 
 `🔒 Secure` Browsing with Atlas is secure by default; all your data is end-to-end encrypted while being processed securely and privately.
 
-`💨 Speed` Made in Astro, Atlas's static composition is as fast as can be without bloat.
+`💨 Speedy` Made in Astro, Atlas's static composition ensures swift interface navigation and small bundle sizes.
 
 ## Maintainers
 
