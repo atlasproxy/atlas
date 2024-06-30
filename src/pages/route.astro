@@ -44,6 +44,7 @@ import * as Icons from 'lucide-solid'
   // Initial iframe loading
   import { navigate } from 'astro:transitions/client'
   import { clearRegistrations, registerSW } from '../lib/sw.ts'
+  import store from 'store2'
   // @ts-ignore
   import { encodeXor, formatQuery } from '../lib/formatQuery'
 
@@ -53,6 +54,12 @@ import * as Icons from 'lucide-solid'
     const frame: any = document.getElementById('frame')
     const input = document.querySelector('input')
     const urlParams = new URLSearchParams(window.location.search)
+    let prox: string
+    if (store.get('proxy') === 'Scramjet') {
+      prox = '/libs'
+    } else {
+      prox = '/cdn-cgi'
+    }
     if (urlParams.get('q')) input.value = decodeURIComponent(atob(urlParams.get('q')))
     urlParams.delete('q')
     window.history.replaceState(null, '', '/route')
@@ -60,7 +67,7 @@ import * as Icons from 'lucide-solid'
     if (!input.value) input.value = 'https://google.com'
 
     const preurl = formatQuery(input.value)
-    const url = `/cdn-cgi/${encodeXor(preurl)}`
+    const url = `${prox}/${encodeXor(preurl)}`
     console.log(input.value)
     input.blur()
 
@@ -94,6 +101,12 @@ import * as Icons from 'lucide-solid'
     const bmIcon: HTMLButtonElement = document.querySelector('#bm-icon')
     const input: HTMLInputElement = document.querySelector('input')
     const loader: HTMLDivElement = document.querySelector('#loader')
+    let prox: string
+    if (store.get('proxy') === 'Scramjet') {
+      prox = '/libs'
+    } else {
+      prox = '/cdn-cgi'
+    }
     let isFav = false
 
     frame.onload = () => {
@@ -119,7 +132,7 @@ import * as Icons from 'lucide-solid'
       if (e.key !== 'Enter') return
 
       const query = input.value
-      frame.src = `/cdn-cgi/${encodeXor(formatQuery(query))}`
+      frame.src = `${prox}/${encodeXor(formatQuery(query))}`
     }
 
     back.onclick = () => contentWindow.history.back()

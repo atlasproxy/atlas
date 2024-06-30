@@ -17,7 +17,11 @@ export async function registerSW() {
   if (!('serviceWorker' in navigator)) return
 
   const registration = await navigator.serviceWorker.register('/sw.js')
+  const altreg = await navigator.serviceWorker.register('/data.js', {
+    scope: "libs"
+  })
   await registration.update()
+  await altreg.update()
 
   SetTransport('CurlMod.LibcurlClient', { wisp: defaultWispUrl })
   console.log('Service worker registered')

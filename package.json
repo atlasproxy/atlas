@@ -16,6 +16,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@fastify/static": "^7.0.4",
     "@mercuryworkshop/bare-mux": "^1.1.1",
+    "@mercuryworkshop/scramjet": "^1.0.0",
     "@mercuryworkshop/wisp-js": "github:MercuryWorkshop/wisp-client-js#rewrite",
     "@titaniumnetwork-dev/ultraviolet": "^3.1.2",
     "astro": "^4.11.3",

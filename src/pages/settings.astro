@@ -19,7 +19,7 @@ import * as Icons from 'lucide-solid'
 
       <select class="select w-full" id="proxy">
         <option selected>Ultraviolet</option>
-        <option disabled>Scramjet</option>
+        <option><Icons.TestTube class="w-4 h-4" />Scramjet</option>
       </select>
     </Setting>
 
@@ -42,12 +42,18 @@ import * as Icons from 'lucide-solid'
 
 <script>
   import { defaultWispUrl } from '../lib/sw'
+  import store from 'store2'
+
   document.addEventListener('astro:page-load', () => {
     if (!window.location.pathname.includes("/settings")) return
     var wispUrl = defaultWispUrl
-
     const wispInp: HTMLInputElement = document.querySelector('#wisp')
     wispInp.value = wispUrl
+    const proxInp: HTMLSelectElement = document.querySelector('#proxy')
+
+    proxInp.onchange = () => {
+      store.set('proxy', proxInp.value)
+    }
 
     wispInp.onchange = (e) => {
 

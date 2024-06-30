@@ -50,6 +50,22 @@ export default defineConfig({
           {
             src: './node_modules/@titaniumnetwork-dev/ultraviolet/dist/uv.sw.js',
             dest: 'cdn'
+          },
+          {
+            src: './node_modules/@mercuryworkshop/scramjet/dist/scramjet.bundle.js',
+            dest: 'lib'
+          },
+          {
+            src: './node_modules/@mercuryworkshop/scramjet/dist/scramjet.client.js',
+            dest: 'lib'
+          },
+          {
+            src: './node_modules/@mercuryworkshop/scramjet/dist/scramjet.worker.js',
+            dest: 'lib'
+          },
+          {
+            src: './node_modules/@mercuryworkshop/scramjet/dist/scramjet.codecs.js',
+            dest: 'lib'
           }
         ]
       })
