@@ -4,19 +4,19 @@
 
 <hr />
 
-Atlas is minimalistic proxy, yet retains important features for a streamlined proxy experience. It was an entry for the 2024 Titanium Network Proxathon, receiving first place.
+Atlas is a minimalistic proxy service packed with important features for a simple, streamlined proxy experience. It was an entry for the 2024 Titanium Network Proxathon.
 
 ## Features
 
 `🖥️ Minimal` Atlas's minimalized UI allows you to browse quickly and easily with the least possible obstructions.
 
-`🔖 Bookmarks` Save pages with the Bookmark button while browsing and come back to it later in the Bookmark page.
+`🔖 Bookmarks` Save the tab you're browsing on to come back to it later.
 
-`⚙️ Customization` Customize Atlas's settings and behavior to your preference.
+`⚙️ Customization` Personalize Atlas just the way you like it, with a wide range of different settings to customize.
 
-`🔒 Secure` Browsing is secure by default; all your data is processed securely and privately.
+`🔒 Secure` Browsing with Atlas is secure by default; all your data is end-to-end encrypted while being processed securely and privately.
 
-`💨 Speed` Being created in Astro, Atlas's static composition is as fast as can be without bloat.
+`💨 Speed` Made in Astro, Atlas's static composition is as fast as can be without bloat.
 
 ## Maintainers
 
@@ -24,10 +24,10 @@ Atlas is maintained by a group of dedicated developers made up from other proxy 
 
 - [proudparrot2](https://github.com/proudparrot2)
 - [xstars](https://github.com/Notplayingallday383)
-- [Cattn](https://github.com/)
+- [Cattn](https://github.com/cattn)
 
 ## Sponsors
 
-<a href="https://discord.gg/h4QV329r"><img src="https://avatars.githubusercontent.com/u/107224030" height="100" /> </a>
+<img src="https://avatars.githubusercontent.com/u/107224030" height="100" /> 
 
-Thanks to Holy Unblocker for sponsoring Atlas during the competition.
+Thanks to [Holy Unblocker](https://holyubofficial.net) for sponsoring Atlas during the competition.
