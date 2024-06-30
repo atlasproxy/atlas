@@ -1,15 +1,33 @@
-# Atlas
+<div align="center">
+  <img src="./public/wordmark.svg" height="75" /> <br /> <br>
+</div>
 
-Atlas is a simple, fast, sleek proxy written in astro
+<hr />
 
-## Setup
+Atlas is minimalistic proxy, yet retains important features for a streamlined proxy experience. It was an entry for the 2024 Titanium Network Proxathon, receiving first place.
 
-To setup acruton, you first need to install the dependencies using `npm i` or `pnpm i`
+## Features
 
-If you plan on using this for production, use the production server with `pnpm start` however if you haven't built Atlas yet you can just use the build start command that will do it for you: `pnpm run bstart`.
+`🖥️ Minimal` Atlas's minimalized UI allows you to browse quickly and easily with the least possible obstructions.
 
-TODO
+`🔖 Bookmarks` Save pages with the Bookmark button while browsing and come back to it later in the Bookmark page.
 
-## Credits
+`⚙️ Customization` Customize Atlas's settings and behavior to your preference.
 
-TODO
+`🔒 Secure` Browsing is secure by default; all your data is processed securely and privately.
+
+`💨 Speed` Being created in Astro, Atlas's static composition is as fast as can be without bloat.
+
+## Maintainers
+
+Atlas is maintained by a group of dedicated developers made up from other proxy services.
+
+- [proudparrot2](https://github.com/proudparrot2)
+- [xstars](https://github.com/Notplayingallday383)
+- [Cattn](https://github.com/)
+
+## Sponsors
+
+<a href="https://discord.gg/h4QV329r"><img src="https://avatars.githubusercontent.com/u/107224030" height="100" /> </a>
+
+Thanks to Holy Unblocker for sponsoring Atlas during the competition.
