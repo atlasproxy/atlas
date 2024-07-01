@@ -139,10 +139,13 @@ import * as Icons from 'lucide-solid'
       if (erudaShowing === false) {
         eruda.init()
         eruda.show()
+        erudaShowing = true
       } else {
         eruda.destroy()
+        erudaShowing = false
       }
     }
+    
     input.onkeydown = (e) => {
       if (e.key !== 'Enter') return
 
