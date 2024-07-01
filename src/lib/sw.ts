@@ -1,5 +1,8 @@
 // @ts-ignore
 import { SetTransport } from '@mercuryworkshop/bare-mux'
+
+
+
 export async function clearRegistrations() {
   if (!('serviceWorker' in navigator)) return
 
@@ -11,7 +14,7 @@ export async function clearRegistrations() {
 }
 
 // please stop changing this
-export const defaultWispUrl = `${window.location.protocol == 'https:' ? 'wss' : 'ws'}://${window.location.host}/wisp/`
+export const wispUrl = import.meta.env.PUBLIC_WISP_PRODUCTION ? `${window.location.protocol == 'https:' ? 'wss' : 'ws'}://api.${window.location.host}/` : `${window.location.protocol == 'https:' ? 'wss' : 'ws'}://${window.location.host}/wisp/`
 
 export async function registerSW() {
   if (!('serviceWorker' in navigator)) return
@@ -23,6 +26,6 @@ export async function registerSW() {
   await registration.update()
   await altreg.update()
 
-  SetTransport('CurlMod.LibcurlClient', { wisp: defaultWispUrl })
+  SetTransport('CurlMod.LibcurlClient', { wisp: wispUrl })
   console.log('Service worker registered')
 }

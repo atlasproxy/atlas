@@ -41,12 +41,11 @@ import * as Icons from 'lucide-solid'
 </Page>
 
 <script>
-  import { defaultWispUrl } from '../lib/sw'
   import store from 'store2'
 
   document.addEventListener('astro:page-load', () => {
     if (!window.location.pathname.includes("/settings")) return
-    var wispUrl = defaultWispUrl
+    var wispUrl = wispUrl
     const wispInp: HTMLInputElement = document.querySelector('#wisp')
     wispInp.value = wispUrl
     const proxInp: HTMLSelectElement = document.querySelector('#proxy')
