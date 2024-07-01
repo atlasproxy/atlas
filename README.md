@@ -13,7 +13,7 @@ Atlas is a minimalistic proxy service packed with important features for a simpl
 
 `🔖 Bookmarks` Save the tab you're browsing on to come back to it later.
 
-`🚀 Shortcuts` Quickly launch popular websites instead of searching for them.
+`🚀 Shortcuts` Choose from a menu of popular sites to quickly launch right in.
 
 `🧩 Customization` Personalize Atlas just the way you like it, with a wide range of different settings to customize.
 
