@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import daisyui from "daisyui"
+import daisythemes from "daisyui/src/theming/themes"
 import typography from '@tailwindcss/typography'
 
 export default {
@@ -8,7 +9,12 @@ export default {
 		extend: {},
 	},
 	daisyui: {
-		themes: ['night'],
+		themes: [{
+			sunset: {
+				...daisythemes["sunset"],
+				primary: "#38BDF9",
+			},
+		},],
 		logs: false
 	},
 	plugins: [daisyui, typography],
