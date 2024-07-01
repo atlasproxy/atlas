@@ -53,9 +53,6 @@ importers:
       lucide-solid:
         specifier: ^0.397.0
         version: 0.397.0(solid-js@1.8.17)
-      picocolors:
-        specifier: ^1.0.1
-        version: 1.0.1
       solid-js:
         specifier: ^1.8.17
         version: 1.8.17

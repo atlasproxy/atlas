@@ -5,7 +5,17 @@ const shouldBuild = await consola.prompt('Build frontend?', {
   type: 'confirm'
 })
 
-if (shouldBuild) await build({})
+if (shouldBuild) {
+  consola.start('Starting frontend build,,,')
+  await build({
+    logLevel: 'silent',
+    vite: {
+      logLevel: 'silent'
+    }
+  })
+
+  consola.success('Build successful')
+}
 
 import Fastify from 'fastify'
 import fastifyStatic from '@fastify/static'
@@ -14,7 +24,6 @@ import { server as wisp } from '@mercuryworkshop/wisp-js/server'
 
 import { fileURLToPath } from 'node:url'
 import { createServer } from 'node:http'
-import pico from 'picocolors'
 
 // @ts-ignore
 const { handler } = await import('./dist/server/entry.mjs')
@@ -39,9 +48,9 @@ await app
   })
   .register(fastifyMiddie)
 
-app.use(handler)
+await app.use(handler)
 
 app.listen({ port }, () => {
-  console.log(`${pico.bold(`⛰️ Atlas ${pico.blue(pico.inverse(' 1.0.0 '))}`)} 
-  → ${pico.gray(`Listening on http://localhost:${port}`)}`)
+  consola.success('⛰️ Atlas server is online')
+  consola.info(`Listening on http://localhost:${port}`)
 })
