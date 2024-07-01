@@ -6,7 +6,7 @@ const shouldBuild = await consola.prompt('Build frontend?', {
 })
 
 if (shouldBuild) {
-  consola.start('Starting frontend build,,,')
+  consola.start('Starting frontend build...')
   await build({
     logLevel: 'silent',
     vite: {
