@@ -1,5 +1,5 @@
 // @ts-ignore
-import { SetTransport } from '@mercuryworkshop/bare-mux/node'
+import { SetTransport } from '@mercuryworkshop/bare-mux'
 
 export async function clearRegistrations() {
   if (!('serviceWorker' in navigator)) return
