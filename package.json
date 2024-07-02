@@ -24,7 +24,6 @@
     "astro": "^4.11.3",
     "consola": "^3.2.3",
     "daisyui": "^4.12.10",
-    "eruda": "^3.0.1",
     "fastify": "^4.28.0",
     "lucide-solid": "^0.397.0",
     "solid-js": "^1.8.17",

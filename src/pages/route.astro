@@ -85,14 +85,14 @@ import * as Icons from 'lucide-solid'
 </script>
 
 <script>
-  interface ContentWindow extends Window {
-    __uv$location: Location
-  }
-
   // Control handling
   import { encodeXor, formatQuery } from '../lib/formatQuery'
-  import eruda from "eruda"
   import store from 'store2'
+
+  interface ContentWindow extends Window {
+    __uv$location: Location
+    eruda: any
+  }
 
   document.addEventListener('astro:page-load', async () => {
     if (!window.location.pathname.includes('/route')) return
@@ -108,11 +108,13 @@ import * as Icons from 'lucide-solid'
     const loader: HTMLDivElement = document.querySelector('#loader')
     const erudaBTN: HTMLButtonElement = document.querySelector('#eruda')
     let prox: string
+
     if (store.get('proxy') === 'Scramjet') {
       prox = '/libs'
     } else {
       prox = '/cdn-cgi'
     }
+
     let isFav = false
     let erudaShowing = false
 
@@ -133,19 +135,22 @@ import * as Icons from 'lucide-solid'
         bmIcon.classList.remove('fill-current')
         bmIcon.classList.add('fill-none')
       }
+
+      const erudaScript = contentWindow.document.createElement('script')
+      erudaScript.src = 'https://cdn.jsdelivr.net/npm/eruda'
+      contentWindow.document.head.appendChild(erudaScript)
     }
 
     erudaBTN.onclick = () => {
-      if (erudaShowing === false) {
-        eruda.init()
-        eruda.show()
-        erudaShowing = true
+      if (!('eruda' in contentWindow)) return
+      if (contentWindow.eruda._isInit) {
+        contentWindow.eruda.destroy()
       } else {
-        eruda.destroy()
-        erudaShowing = false
+        contentWindow.eruda.init()
+        contentWindow.eruda.show()
       }
     }
-    
+
     input.onkeydown = (e) => {
       if (e.key !== 'Enter') return
 
