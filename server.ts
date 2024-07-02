@@ -51,6 +51,5 @@ await app
 await app.use(handler)
 
 app.listen({ port }, () => {
-  consola.success('⛰️ Atlas server is online')
-  consola.info(`Listening on http://localhost:${port}`)
+  consola.success(`Server listening on http://localhost:${port}`)
 })
