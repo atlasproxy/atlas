@@ -27,8 +27,8 @@ importers:
         specifier: ^7.0.4
         version: 7.0.4
       '@mercuryworkshop/bare-mux':
-        specifier: ^1.1.1
-        version: 1.1.1
+        specifier: ^1.1.2
+        version: 1.1.2
       '@mercuryworkshop/scramjet':
         specifier: ^1.0.0
         version: 1.0.0(esbuild@0.21.5)
@@ -588,8 +588,8 @@ packages:
     resolution: {integrity: sha512-9I2Zn6+NJLfaGoz9jN3lpwDgAYvfGeNYdbAIjJOqzs4Tpc+VU3Jqq4IofSUBKajiDS8k9fZIg18/z13mpk1bsA==}
     engines: {node: '>=8'}
 
-  '@mercuryworkshop/bare-mux@1.1.1':
-    resolution: {integrity: sha512-qKOnTsIjwv4wBvToek3Jm+y3F/BcFtjy6HOsdyzIUemCOw51kodzRsvWvU9Pf/JYDVPV8or0zbsg+qOKtasjhA==}
+  '@mercuryworkshop/bare-mux@1.1.2':
+    resolution: {integrity: sha512-a9tfRAbpDUnJENmIPJpQT/QHVuiS6cohaQxxQ+NKZQGCeZX8v2phDUX3oya7rdwmKpASeS7Zf3o3UOX8IcHTgw==}
 
   '@mercuryworkshop/scramjet@1.0.0':
     resolution: {integrity: sha512-YYsFAr8oCT80pjKcf6dW8vwwkFYmjBd0rc7JyY2jrvHFZv3uywlrgMvO2TDVqiK4XBXaRYo+vVJ5q/hlZzNEBQ==}
@@ -3191,14 +3191,14 @@ snapshots:
 
   '@lukeed/ms@2.0.2': {}
 
-  '@mercuryworkshop/bare-mux@1.1.1':
+  '@mercuryworkshop/bare-mux@1.1.2':
     dependencies:
       '@types/uuid': 9.0.8
       uuid: 9.0.1
 
   '@mercuryworkshop/scramjet@1.0.0(esbuild@0.21.5)':
     dependencies:
-      '@mercuryworkshop/bare-mux': 1.1.1
+      '@mercuryworkshop/bare-mux': 1.1.2
       '@webreflection/idb-map': 0.1.3
       astravel: 0.6.1
       astring: 1.8.6
