@@ -20,7 +20,6 @@
     "@mercuryworkshop/bare-mux": "^1.1.2",
     "@mercuryworkshop/scramjet": "^1.0.0",
     "@mercuryworkshop/wisp-js": "github:MercuryWorkshop/wisp-client-js#rewrite",
-    "@titaniumnetwork-dev/ultraviolet": "^3.1.2",
     "astro": "^4.11.3",
     "consola": "^3.2.3",
     "daisyui": "^4.12.10",

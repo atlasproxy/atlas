@@ -8,4 +8,12 @@ self.__uv$config = {
   bundle: '/cdn/uv.bundle.js',
   config: '/cdn/uv.config.js',
   sw: '/cdn/uv.sw.js',
-};
+
+  inject(ctx, url) {
+
+  },
+
+  middleware(request) {
+    
+  }
+}

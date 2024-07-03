@@ -31,22 +31,6 @@ export default defineConfig({
       viteStaticCopy({
         targets: [
           {
-            src: './node_modules/@titaniumnetwork-dev/ultraviolet/dist/uv.bundle.js',
-            dest: 'cdn'
-          },
-          {
-            src: './node_modules/@titaniumnetwork-dev/ultraviolet/dist/uv.client.js',
-            dest: 'cdn'
-          },
-          {
-            src: './node_modules/@titaniumnetwork-dev/ultraviolet/dist/uv.handler.js',
-            dest: 'cdn'
-          },
-          {
-            src: './node_modules/@titaniumnetwork-dev/ultraviolet/dist/uv.sw.js',
-            dest: 'cdn'
-          },
-          {
             src: './node_modules/@mercuryworkshop/scramjet/dist/scramjet.bundle.js',
             dest: 'lib'
           },

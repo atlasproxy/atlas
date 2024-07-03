@@ -21,6 +21,7 @@ export async function registerSW() {
   const altreg = await navigator.serviceWorker.register('/data.js', {
     scope: "libs"
   })
+  
   await registration.update()
   await altreg.update()
 
