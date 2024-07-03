@@ -17,19 +17,25 @@ import * as Icons from 'lucide-solid'
     <Setting>
       <span slot="title">Proxy</span>
 
-      <select class="select w-full" id="proxy">
-        <option selected>Ultraviolet</option>
-        <option><Icons.TestTube class="w-4 h-4" />Scramjet</option>
-      </select>
+      <div class="dropdown w-full">
+        <div tabindex="0" role="button" class="select btn m-1 w-full">Ultraviolet</div>
+        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-full p-2 shadow">
+          <li id="uv"><a><img src="/data/uv.png" class="w-4 h-4" />Ultraviolet</a></li>
+          <li id="scr"><a><img src="/data/scramjet.png" class="w-4 h-4" />Scramjet</a></li>
+        </ul>
+      </div>
     </Setting>
 
     <Setting>
       <span slot="title">Transport</span>
 
-      <select class="select w-full" onchange="">
-        <option selected>Epoxy</option>
-        <option>Libcurl</option>
-      </select>
+      <div class="dropdown w-full">
+        <div tabindex="0" role="button" class="select btn m-1 w-full">Epoxy</div>
+        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-full p-2 shadow">
+          <li id="epx"><a><img src="/data/uv.png" class="w-4 h-4" />Epoxy</a></li>
+          <li id="curl"><a><img src="/data/scramjet.png" class="w-4 h-4" />Libcurl</a></li>
+        </ul>
+      </div>
     </Setting>
 
     <Setting>
@@ -48,14 +54,26 @@ import * as Icons from 'lucide-solid'
     var wispUrl = wispUrl
     const wispInp: HTMLInputElement = document.querySelector('#wisp')
     wispInp.value = wispUrl
-    const proxInp: HTMLSelectElement = document.querySelector('#proxy')
+    const epxInp: HTMLLIElement = document.querySelector('#epx')
+    const curlInp: HTMLLIElement = document.querySelector('#curl')
+    const uvInp: HTMLLIElement = document.querySelector('#uv')
+    const scrInp: HTMLLIElement = document.querySelector('#scr')
 
-    proxInp.onchange = () => {
-      store.set('proxy', proxInp.value)
-    }
+    epxInp.addEventListener('click', () => {
+      store.set('transport', 'EpxMod.EpoxyClient')
+    })
+    curlInp.addEventListener('click', () => {
+      store.set('transport', 'CurlMod.LibcurlClient')
+    })
+    uvInp.addEventListener('click', () => {
+      store.set('proxy', 'Ultraviolet')
+    })
+    scrInp.addEventListener('click', () => {
+      store.set('proxy', 'Scramjet')
+    })
 
-    wispInp.onchange = (e) => {
-
+    wispInp.onchange = () => {
+      store.set('wispSrv', wispInp.value)
     }
   })
 </script>

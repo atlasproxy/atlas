@@ -1,5 +1,6 @@
 // @ts-ignore
-import { SetTransport } from '@mercuryworkshop/bare-mux'
+import { SetTransport } from '@mercuryworkshop/bare-mux/node'
+import store from 'store2'
 
 export async function clearRegistrations() {
   if (!('serviceWorker' in navigator)) return
@@ -12,7 +13,7 @@ export async function clearRegistrations() {
 }
 
 // please stop changing this
-export const wispUrl = import.meta.env.PUBLIC_WISP_PRODUCTION ? `${window.location.protocol == 'https:' ? 'wss' : 'ws'}://api.${window.location.host}/` : `${window.location.protocol == 'https:' ? 'wss' : 'ws'}://${window.location.host}/wisp/`
+export const wispUrl = import.meta.env.PUBLIC_WISP_PRODUCTION ? `${window.location.protocol == 'https:' ? 'wss' : 'ws'}://api.${window.location.host}/` : `${window.location.protocol == 'https:' ? 'wss' : 'ws'}://${window.location.host}/wisp/` || store.get('wispSrv')
 
 export async function registerSW() {
   if (!('serviceWorker' in navigator)) return
