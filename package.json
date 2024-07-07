@@ -1,5 +1,5 @@
 {
-  "name": "proxathon",
+  "name": "atlas",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -17,24 +17,24 @@
     "@astrojs/tailwind": "^5.1.0",
     "@fastify/middie": "^8.3.1",
     "@fastify/static": "^7.0.4",
-    "@mercuryworkshop/bare-mux": "^1.1.2",
-    "@mercuryworkshop/scramjet": "^1.0.0",
+    "@mercuryworkshop/bare-mux": "^1.1.4",
+    "@mercuryworkshop/scramjet": "^1.0.2",
     "@mercuryworkshop/wisp-js": "github:MercuryWorkshop/wisp-client-js#rewrite",
-    "astro": "^4.11.3",
+    "astro": "^4.11.5",
     "consola": "^3.2.3",
     "daisyui": "^4.12.10",
-    "fastify": "^4.28.0",
+    "fastify": "^4.28.1",
     "lucide-solid": "^0.397.0",
-    "solid-js": "^1.8.17",
+    "solid-js": "^1.8.18",
     "solid-toast": "^0.5.0",
     "store2": "^2.14.3",
     "tailwindcss": "^3.4.4",
-    "tsx": "^4.15.7",
-    "typescript": "^5.5.2",
-    "vite-plugin-static-copy": "^1.0.5"
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3",
+    "vite-plugin-static-copy": "^1.0.6"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.13",
-    "@types/node": "^20.14.9"
+    "@types/node": "^20.14.10"
   }
 }
