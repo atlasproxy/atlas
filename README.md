@@ -28,9 +28,3 @@ Atlas is maintained by a group of dedicated developers made up from other proxy 
 - [proudparrot2](https://github.com/proudparrot2)
 - [xstars](https://github.com/Notplayingallday383)
 - [Cattn](https://github.com/cattn)
-
-## Sponsors
-
-<img src="https://avatars.githubusercontent.com/u/107224030" height="100" /> 
-
-Thanks to [Holy Unblocker](https://holyubofficial.net) for sponsoring Atlas during the competition.

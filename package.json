@@ -1,7 +1,7 @@
 {
   "name": "atlas",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "start": "tsx server.ts",
@@ -19,7 +19,7 @@
     "@fastify/static": "^7.0.4",
     "@mercuryworkshop/bare-mux": "^1.1.4",
     "@mercuryworkshop/scramjet": "^1.0.2",
-    "@mercuryworkshop/wisp-js": "github:MercuryWorkshop/wisp-client-js#rewrite",
+    "@mercuryworkshop/wisp-js": "0.1.0",
     "astro": "^4.11.5",
     "consola": "^3.2.3",
     "daisyui": "^4.12.10",
