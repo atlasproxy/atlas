@@ -27,11 +27,11 @@ importers:
         specifier: ^7.0.4
         version: 7.0.4
       '@mercuryworkshop/bare-mux':
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^1.1.4
+        version: 1.1.4
       '@mercuryworkshop/wisp-js':
-        specifier: 0.1.0
-        version: 0.1.0
+        specifier: 0.1.1
+        version: 0.1.1
       astro:
         specifier: ^4.11.6
         version: 4.11.6(@types/node@20.14.11)(typescript@5.5.3)
@@ -626,11 +626,11 @@ packages:
     resolution: {integrity: sha512-9I2Zn6+NJLfaGoz9jN3lpwDgAYvfGeNYdbAIjJOqzs4Tpc+VU3Jqq4IofSUBKajiDS8k9fZIg18/z13mpk1bsA==}
     engines: {node: '>=8'}
 
-  '@mercuryworkshop/bare-mux@2.0.2':
-    resolution: {integrity: sha512-1rnqFfI29VXi3jrMbkotHV+NnafJ3tpTIuH3Ov/BtVAfZMNGcsCRr3dwEKRWc+mDb0tWdNWC0PnZghgfAlbr+A==}
+  '@mercuryworkshop/bare-mux@1.1.4':
+    resolution: {integrity: sha512-mJPezqEpiKTCs+wu/3TowilnVXQgFs4SqoQnnbCbOc5cV6bDggaolKkyYjDnmOB9t/nptIIXDWDB31oS9vX9kA==}
 
-  '@mercuryworkshop/wisp-js@0.1.0':
-    resolution: {integrity: sha512-KhSViqQmRr7cFKi4zb/VawYikeJlRbICvh6mBEAvGBhK4SAX/3xhhRNgsdw/nVEykU9oBhY7qR2SPxG6Up7jFg==}
+  '@mercuryworkshop/wisp-js@0.1.1':
+    resolution: {integrity: sha512-mpsoKteEPkuY6uGGY6B73lU+EBGMlh/A39yXG4hNKzV6FZZ9CWmq3bAREmsLqA8adK/Y+OV8MkYWBEaRJHVhTw==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -774,6 +774,9 @@ packages:
 
   '@types/unist@3.0.2':
     resolution: {integrity: sha512-dqId9J8K/vGi5Zr7oo212BGii5m3q5Hxlkwy3WpYuKPklmBEvsbMYYyLxAQpSffdLl/gdW0XUpKWFvYmyoWCoQ==}
+
+  '@types/uuid@9.0.8':
+    resolution: {integrity: sha512-jg+97EGIcY9AGHJJRaaPVgetKDsrTgbRjQ5Msgjh/DQKEFl0DtyRr/VCOyD1T2R1MNeWPK/u7JoGhlDZnKBAfA==}
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
@@ -2415,6 +2418,10 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
+  uuid@9.0.1:
+    resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
+    hasBin: true
+
   validate-html-nesting@1.2.2:
     resolution: {integrity: sha512-hGdgQozCsQJMyfK5urgFcWEqsSSrK63Awe0t/IMR0bZ0QMtnuaiHzThW81guu3qx9abLi99NEuiaN6P9gVYsNg==}
 
@@ -3242,9 +3249,12 @@ snapshots:
 
   '@lukeed/ms@2.0.2': {}
 
-  '@mercuryworkshop/bare-mux@2.0.2': {}
+  '@mercuryworkshop/bare-mux@1.1.4':
+    dependencies:
+      '@types/uuid': 9.0.8
+      uuid: 9.0.1
 
-  '@mercuryworkshop/wisp-js@0.1.0':
+  '@mercuryworkshop/wisp-js@0.1.1':
     dependencies:
       bufferutil: 4.0.8
       ws: 8.18.0(bufferutil@4.0.8)
@@ -3374,6 +3384,8 @@ snapshots:
       undici-types: 5.26.5
 
   '@types/unist@3.0.2': {}
+
+  '@types/uuid@9.0.8': {}
 
   '@ungap/structured-clone@1.2.0': {}
 
@@ -5366,6 +5378,8 @@ snapshots:
       punycode: 2.3.1
 
   util-deprecate@1.0.2: {}
+
+  uuid@9.0.1: {}
 
   validate-html-nesting@1.2.2: {}
 
