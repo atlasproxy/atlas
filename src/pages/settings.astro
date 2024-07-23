@@ -2,6 +2,7 @@
 import Page from '../layouts/page.astro'
 import Setting from '../components/setting.astro'
 import * as Icons from 'lucide-solid'
+import store from 'store2'
 ---
 
 <Page>
@@ -18,7 +19,7 @@ import * as Icons from 'lucide-solid'
       <span slot="title">Proxy</span>
 
       <div class="dropdown w-full">
-        <div tabindex="0" role="button" class="select btn m-1 w-full">Ultraviolet</div>
+        <div tabindex="0" role="button" id="proxinp" class="select btn m-1 w-full"></div>
         <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-full p-2 shadow">
           <li id="uv"><a><img src="/data/uv.png" class="w-4 h-4" />Ultraviolet</a></li>
           <li id="scr"><a><img src="/data/scramjet.png" class="w-4 h-4" />Scramjet</a></li>
@@ -30,10 +31,10 @@ import * as Icons from 'lucide-solid'
       <span slot="title">Transport</span>
 
       <div class="dropdown w-full">
-        <div tabindex="0" role="button" class="select btn m-1 w-full">Epoxy</div>
+        <div tabindex="0" role="button" id="transinp" class="select btn m-1 w-full"></div>
         <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-full p-2 shadow">
-          <li id="epx"><a><img src="/data/uv.png" class="w-4 h-4" />Epoxy</a></li>
-          <li id="curl"><a><img src="/data/scramjet.png" class="w-4 h-4" />Libcurl</a></li>
+          <li id="epx"><a>Epoxy</a></li>
+          <li id="curl"><a>Libcurl</a></li>
         </ul>
       </div>
     </Setting>
@@ -58,18 +59,41 @@ import * as Icons from 'lucide-solid'
     const curlInp: HTMLLIElement = document.querySelector('#curl')
     const uvInp: HTMLLIElement = document.querySelector('#uv')
     const scrInp: HTMLLIElement = document.querySelector('#scr')
+    const transinp: HTMLDivElement = document.querySelector('#transinp')
+    const proxinp: HTMLDivElement = document.querySelector('#proxinp')
+    const transport = store.get('transport')
+
+    if (store.get('proxy')) {
+      proxinp.textContent = store.get('proxy')
+    } else {
+      proxinp.textContent = "Ultraviolet"
+    }
+
+    if (transport) {
+      if (transport === "/epoxy/index.js") {
+        transinp.innerText = "Epoxy"
+      } else {
+        transinp.innerText = "Libcurl"
+      }
+    } else {
+      transinp.innerText = "Libcurl"
+    }
 
     epxInp.addEventListener('click', () => {
-      store.set('transport', 'EpxMod.EpoxyClient')
+      store.set('transport', '/epoxy/index.js')
+      transinp.textContent = "Epoxy"
     })
     curlInp.addEventListener('click', () => {
-      store.set('transport', 'CurlMod.LibcurlClient')
+      store.set('transport', '/libcurl/index.js')
+      transinp.textContent = "Libcurl"
     })
     uvInp.addEventListener('click', () => {
       store.set('proxy', 'Ultraviolet')
+      proxinp.textContent = "Ultraviolet"
     })
     scrInp.addEventListener('click', () => {
       store.set('proxy', 'Scramjet')
+      proxinp.textContent = "Scramjet"
     })
 
     wispInp.onchange = () => {
