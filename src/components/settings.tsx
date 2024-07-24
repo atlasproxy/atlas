@@ -2,6 +2,8 @@ import toast from 'solid-toast'
 import Setting from './settingcard'
 import { createEffect, createSignal, onMount } from 'solid-js'
 import store from 'store2'
+import { clearRegistrations, registerSW } from '../lib/sw'
+import { cloaks, handleCloak } from '../lib/cloak'
 
 export default function Settings() {
   const [cloak, setCloak] = createSignal<string>('')
@@ -16,11 +18,15 @@ export default function Settings() {
     if (store('wispServer')) setWispServer(store('wispServer'))
   })
 
-  function save() {
+  async function save() {
     store('cloak', cloak())
     store('panicKey', panicKey())
     store('transport', transport())
     store('wispServer', wispServer())
+
+    await clearRegistrations()
+    await registerSW()
+    handleCloak(cloak() as keyof typeof cloaks)
 
     toast.success('Settings saved', {
       style: {
@@ -43,9 +49,7 @@ export default function Settings() {
             <option value="google">Google</option>
             <option value="classroom">Google Classroom</option>
             <option value="drive">Google Drive</option>
-            <option value="canvas">Canvas</option>
             <option value="desmos">Desmos</option>
-            <option value="schoology">Schoology</option>
           </select>
         </Setting>
         <Setting title="Panic Key">
