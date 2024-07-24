@@ -63,7 +63,6 @@ import * as Icons from 'lucide-solid'
   import { navigate } from 'astro:transitions/client'
   // @ts-ignore
   import { clearRegistrations, registerSW } from '../lib/sw.ts'
-  import toast from 'solid-toast'
 
   document.addEventListener('astro:page-load', async () => {
     if (window.location.pathname !== '/') return
