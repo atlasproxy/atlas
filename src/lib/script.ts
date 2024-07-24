@@ -17,4 +17,11 @@ document.addEventListener('astro:page-load', async () => {
   if (cloak) {
     handleCloak(cloak)
   }
+
+  document.onkeydown = (e) => {
+    const key = store('panicKey') as string
+    if (!key || key.length < 1 || e.key !== key) return
+
+    window.location.replace('https://classroom.google.com')
+  }
 })
