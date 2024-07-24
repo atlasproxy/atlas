@@ -6,6 +6,15 @@ import { viteStaticCopy } from 'vite-plugin-static-copy'
 import { server as wisp } from '@mercuryworkshop/wisp-js/server'
 
 import node from '@astrojs/node'
+import path from 'node:path'
+
+import { uvPath } from '@titaniumnetwork-dev/ultraviolet'
+import { baremuxPath } from '@mercuryworkshop/bare-mux/node'
+// @ts-expect-error
+import { epoxyPath } from '@mercuryworkshop/epoxy-transport'
+// import { libcurlPath } from '@mercuryworkshop/libcurl-transport'
+
+console.log(epoxyPath)
 
 // https://astro.build/config
 export default defineConfig({
@@ -31,20 +40,16 @@ export default defineConfig({
       viteStaticCopy({
         targets: [
           {
-            src: './node_modules/@mercuryworkshop/scramjet/dist/scramjet.bundle.js',
-            dest: 'lib'
+            src: [path.resolve(uvPath, 'uv.bundle.js'), path.resolve(uvPath, 'uv.handler.js'), path.resolve(uvPath, 'uv.client.js'), path.resolve(uvPath, 'uv.sw.js')],
+            dest: 'cdn'
           },
           {
-            src: './node_modules/@mercuryworkshop/scramjet/dist/scramjet.client.js',
-            dest: 'lib'
+            src: [path.resolve(baremuxPath, 'worker.js'), path.resolve(baremuxPath, 'index.js')],
+            dest: 'bare-mux'
           },
           {
-            src: './node_modules/@mercuryworkshop/scramjet/dist/scramjet.worker.js',
-            dest: 'lib'
-          },
-          {
-            src: './node_modules/@mercuryworkshop/scramjet/dist/scramjet.codecs.js',
-            dest: 'lib'
+            src: path.resolve(epoxyPath, 'index.mjs'),
+            dest: 'epoxy'
           }
         ]
       })

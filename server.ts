@@ -38,7 +38,7 @@ const app = Fastify({
       .on('request', handler)
       .on('upgrade', (req, socket, head) => {
         if (req.url?.startsWith('/wisp/')) return wisp.routeRequest(req, socket, head)
-        else socket.destroy()
+        socket.destroy()
       })
 })
 

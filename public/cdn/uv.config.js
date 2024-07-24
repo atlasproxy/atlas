@@ -7,13 +7,5 @@ self.__uv$config = {
   client: '/cdn/uv.client.js',
   bundle: '/cdn/uv.bundle.js',
   config: '/cdn/uv.config.js',
-  sw: '/cdn/uv.sw.js',
-
-  inject(ctx, url) {
-
-  },
-
-  middleware(request) {
-    
-  }
+  sw: '/cdn/uv.sw.js'
 }
