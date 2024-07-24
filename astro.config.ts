@@ -12,9 +12,7 @@ import { uvPath } from '@titaniumnetwork-dev/ultraviolet'
 import { baremuxPath } from '@mercuryworkshop/bare-mux/node'
 // @ts-expect-error
 import { epoxyPath } from '@mercuryworkshop/epoxy-transport'
-// import { libcurlPath } from '@mercuryworkshop/libcurl-transport'
-
-console.log(epoxyPath)
+import { libcurlPath } from '@mercuryworkshop/libcurl-transport'
 
 // https://astro.build/config
 export default defineConfig({
@@ -50,6 +48,10 @@ export default defineConfig({
           {
             src: path.resolve(epoxyPath, 'index.mjs'),
             dest: 'epoxy'
+          },
+          {
+            src: path.resolve(libcurlPath, 'index.mjs'),
+            dest: 'libcurl'
           }
         ]
       })
