@@ -1,5 +1,6 @@
 import { consola } from 'consola'
 import { build } from 'astro'
+import { rimraf } from 'rimraf'
 
 const shouldBuild = await consola.prompt('Build frontend?', {
   type: 'confirm'
@@ -7,6 +8,7 @@ const shouldBuild = await consola.prompt('Build frontend?', {
 
 if (shouldBuild) {
   consola.start('Starting frontend build...')
+  await rimraf('dist')
   await build({
     logLevel: 'silent',
     vite: {
@@ -24,6 +26,7 @@ import { server as wisp } from '@mercuryworkshop/wisp-js/server'
 
 import { fileURLToPath } from 'node:url'
 import { createServer } from 'node:http'
+import path from 'node:path'
 
 // @ts-ignore
 const { handler } = await import('./dist/server/entry.mjs')

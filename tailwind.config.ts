@@ -2,6 +2,7 @@
 import daisyui from 'daisyui'
 import daisythemes from 'daisyui/src/theming/themes'
 import typography from '@tailwindcss/typography'
+import animate from 'tailwindcss-animate'
 
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
@@ -22,5 +23,5 @@ export default {
     ],
     logs: false
   },
-  plugins: [daisyui, typography]
+  plugins: [daisyui, typography, animate]
 }

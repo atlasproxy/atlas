@@ -1,57 +1,17 @@
 ---
 import Page from '../layouts/page.astro'
-import Setting from '../components/setting.astro'
-import * as Icons from 'lucide-solid'
-import store from 'store2'
+import SettingsComponent from '../components/settings'
 ---
 
 <Page>
-  <h1 class="text-5xl text-center font-semibold pt-20">Settings</h1>
-
-  <div class="box-border flex flex-wrap justify-center gap-6 p-8">
-    <Setting>
-      <span slot="title">Panic Key</span>
-
-      <input type="text" class="input w-full" />
-    </Setting>
-
-    <Setting>
-      <span slot="title">Proxy</span>
-
-      <div class="dropdown w-full">
-        <div tabindex="0" role="button" id="proxinp" class="select btn m-1 w-full"></div>
-        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-full p-2 shadow">
-          <li id="uv"><a><img src="/data/uv.png" class="w-4 h-4" />Ultraviolet</a></li>
-          <li id="scr"><a><img src="/data/scramjet.png" class="w-4 h-4" />Scramjet</a></li>
-        </ul>
-      </div>
-    </Setting>
-
-    <Setting>
-      <span slot="title">Transport</span>
-
-      <div class="dropdown w-full">
-        <div tabindex="0" role="button" id="transinp" class="select btn m-1 w-full"></div>
-        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-full p-2 shadow">
-          <li id="epx"><a>Epoxy</a></li>
-          <li id="curl"><a>Libcurl</a></li>
-        </ul>
-      </div>
-    </Setting>
-
-    <Setting>
-      <span slot="title">Wisp Server</span>
-
-      <input type="text" id="wisp" class="input w-full" />
-    </Setting>
-  </div>
+  <SettingsComponent client:load />
 </Page>
 
-<script>
+<!-- <script>
   import store from 'store2'
 
   document.addEventListener('astro:page-load', () => {
-    if (!window.location.pathname.includes("/settings")) return
+    if (!window.location.pathname.includes('/settings')) return
     var wispUrl = wispUrl
     const wispInp: HTMLInputElement = document.querySelector('#wisp')
     wispInp.value = wispUrl
@@ -66,38 +26,38 @@ import store from 'store2'
     if (store.get('proxy')) {
       proxinp.textContent = store.get('proxy')
     } else {
-      proxinp.textContent = "Ultraviolet"
+      proxinp.textContent = 'Ultraviolet'
     }
 
     if (transport) {
-      if (transport === "/epoxy/index.js") {
-        transinp.innerText = "Epoxy"
+      if (transport === '/epoxy/index.mjs') {
+        transinp.innerText = 'Epoxy'
       } else {
-        transinp.innerText = "Libcurl"
+        transinp.innerText = 'Libcurl'
       }
     } else {
-      transinp.innerText = "Libcurl"
+      transinp.innerText = 'Libcurl'
     }
 
     epxInp.addEventListener('click', () => {
-      store.set('transport', '/epoxy/index.js')
-      transinp.textContent = "Epoxy"
+      store.set('transport', '/epoxy/index.mjs')
+      transinp.textContent = 'Epoxy'
     })
     curlInp.addEventListener('click', () => {
-      store.set('transport', '/libcurl/index.js')
-      transinp.textContent = "Libcurl"
+      store.set('transport', '/libcurl/index.mjs')
+      transinp.textContent = 'Libcurl'
     })
     uvInp.addEventListener('click', () => {
       store.set('proxy', 'Ultraviolet')
-      proxinp.textContent = "Ultraviolet"
+      proxinp.textContent = 'Ultraviolet'
     })
     scrInp.addEventListener('click', () => {
       store.set('proxy', 'Scramjet')
-      proxinp.textContent = "Scramjet"
+      proxinp.textContent = 'Scramjet'
     })
 
     wispInp.onchange = () => {
       store.set('wispSrv', wispInp.value)
     }
   })
-</script>
+</script> -->

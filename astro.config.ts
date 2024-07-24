@@ -42,7 +42,7 @@ export default defineConfig({
             dest: 'cdn'
           },
           {
-            src: [path.resolve(baremuxPath, 'worker.js'), path.resolve(baremuxPath, 'index.js')],
+            src: path.resolve(baremuxPath, 'worker.js'),
             dest: 'bare-mux'
           },
           {

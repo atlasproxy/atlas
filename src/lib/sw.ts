@@ -16,17 +16,20 @@ export async function clearRegistrations() {
 export const wispUrl = import.meta.env.PUBLIC_WISP_PRODUCTION ? `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://api.${window.location.host}/` : `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/wisp/` || store.get('wispSrv')
 
 export async function registerSW() {
+  store.set('transport', '/epoxy/index.mjs', false)
+  const wispServer = store('wispServer')
+  const transport = store('transport')
   if (!('serviceWorker' in navigator)) return
 
-  const registration = await navigator.serviceWorker.register('/sw.js')
-  // const altreg = await navigator.serviceWorker.register('/data.js', {
-  //   scope: 'libs'
-  // })
+  try {
+    const uvSW = await navigator.serviceWorker.register('/sw.js')
 
-  await registration.update()
-  // await altreg.update()
+    await uvSW.update()
 
-  const connection = new BareMuxConnection('/bare-mux/worker.js')
-  await connection.setTransport('/epoxy/index.mjs', [{ wisp: wispUrl }])
-  console.log('Service worker registered')
+    const connection = new BareMuxConnection('/bare-mux/worker.js')
+    await connection.setTransport(transport, [{ wisp: wispServer }])
+    console.log('Service worker registered')
+  } catch (e) {
+    console.error('Error while registering service worker', e)
+  }
 }
