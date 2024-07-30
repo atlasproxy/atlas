@@ -10,26 +10,26 @@ import * as Icons from 'lucide-solid'
     <iframe id="frame" class="h-full w-full"></iframe>
   </div>
 
-  <div class="absolute left-1/2 bottom-4 -translate-x-1/2 join rounded-btn bg-base-200 z-50" transition:name="control">
-    <button class="btn btn-square join-item" id="back">
+  <div class="absolute left-1/2 bottom-2 sm:bottom-4 -translate-x-1/2 join rounded-btn bg-base-200 z-50" transition:name="control">
+    <button class="inline-flex sm:inline-flex btn btn-square join-item" id="back">
       <Icons.ChevronLeft class="h-5 w-5" strokeWidth={2.5} />
     </button>
 
-    <button class="btn btn-square join-item" id="reload">
+    <button class="hidden sm:inline-flex btn btn-square join-item" id="reload">
       <Icons.RotateCw class="h-5 w-5" strokeWidth={2.5} />
     </button>
 
-    <button class="btn btn-square join-item" id="eruda">
+    <button class="hidden sm:inline-flex btn btn-square join-item" id="eruda">
       <Icons.Wrench class="h-5 w-5" strokeWidth={2.5} />
     </button>
 
-    <input transition:persist="input" type="text" id="input" class="input bg-base-200 focus:border-none focus:outline-none w-96 join-item" />
+    <input transition:persist="input" type="text" id="input" class="input  bg-base-200 focus:border-none focus:outline-none w-68 sm:w-80 sm:2-96 text-center sm:text-left" />
 
-    <button class="btn btn-square join-item" id="open">
+    <button class="hidden sm:inline-flex btn btn-square join-item" id="open">
       <Icons.ArrowUpRightFromSquare class="h-5 w-5" strokeWidth={2.5} />
     </button>
 
-    <button class="btn btn-square join-item" id="bookmark">
+    <button class=" btn btn-square join-item" id="bookmark">
       <Icons.Bookmark class="h-5 w-5" id="fav-icn" fill="none" strokeWidth={2.5} id="bm-icon" />
     </button>
 
