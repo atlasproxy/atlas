@@ -5,7 +5,7 @@
 
 <hr />
 
-Atlas is a minimalistic proxy service packed with important features for a simple, streamlined proxy experience. It was an entry for the 2024 Titanium Network Proxathon.
+Atlas is a minimalistic proxy service packed with important features for a simple, streamlined proxy experience. Made for the 2024 Titanium Network Proxathon. You can demo it at https://atlas.titaniumnet.work.
 
 ## Features
 
@@ -17,14 +17,15 @@ Atlas is a minimalistic proxy service packed with important features for a simpl
 
 `🧩 Customization` Personalize Atlas just the way you like it, with a wide range of different settings to customize.
 
-`🔒 Secure` Browsing with Atlas is secure by default; all your data is end-to-end encrypted while being processed securely and privately.
+`🔒 Secure` Browsing with Atlas is secure by default; all your data is end-to-end encrypted with Wisp while being processed securely and privately.
 
 `💨 Speedy` Made in Astro, Atlas's static composition ensures swift interface navigation and small bundle sizes.
 
 ## Maintainers
 
-Atlas is maintained by a group of dedicated developers made up from other proxy services.
+Atlas is maintained by the following developers:
 
 - [proudparrot2](https://github.com/proudparrot2)
 - [xstars](https://github.com/Notplayingallday383)
 - [Cattn](https://github.com/cattn)
+- [airtag](https://github.com/airtag8892)
