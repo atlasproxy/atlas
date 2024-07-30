@@ -2,7 +2,7 @@ import { consola } from 'consola'
 import { build } from 'astro'
 import { rimraf } from 'rimraf'
 
-const shouldBuild = await consola.prompt('Build frontend?', {
+const shouldBuild = process.env.BUILD ?? await consola.prompt('Build frontend?', {
   type: 'confirm'
 })
 
