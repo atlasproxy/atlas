@@ -20,8 +20,8 @@ import * as Icons from 'lucide-solid'
     </div>
 
     <div class="join" transition:name="control">
-      <input transition:persist="input" type="text" class="input bg-base-200 focus:border-transparent focus:outline-none w-80 sm:w-96 join-item" />
-      <button class="btn btn-square join-item" id="enter">
+      <input transition:persist="input" type="text" class="input bg-base-200 focus:border-transparent focus:outline-none w-80 sm:w-96 join-item" aria-label="Search" />
+      <button class="btn btn-square join-item" id="enter" aria-label="Search">
         <Icons.Search class="h-5 w-5" />
       </button>
     </div>
@@ -38,7 +38,7 @@ import * as Icons from 'lucide-solid'
 
     <div class="flex gap-2">
       <a href="https://discord.gg/unblock" target="_blank">
-        <button class="btn btn-ghost btn-square">
+        <button class="btn btn-ghost btn-square" aria-label="Discord">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 640 512">
             <path
               fill="currentColor"
@@ -49,7 +49,7 @@ import * as Icons from 'lucide-solid'
       </a>
 
       <a href="https://github.com/atlasproxy/atlas" target="_blank">
-        <button class="btn btn-ghost btn-square">
+        <button class="btn btn-ghost btn-square" aria-label="GitHub">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 496 512">
             <path
               fill="currentColor"

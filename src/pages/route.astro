@@ -7,34 +7,34 @@ import * as Icons from 'lucide-solid'
 <Base>
   <Modal client:load />
   <div class="h-screen w-screen z-40 absolute top-0 left-0">
-    <iframe id="frame" class="h-full w-full"></iframe>
+    <iframe title="route" id="frame" class="h-full w-full"></iframe>
   </div>
 
   <div class="absolute left-1/2 bottom-2 sm:bottom-4 -translate-x-1/2 join rounded-btn bg-base-200 z-50" transition:name="control">
-    <button class="inline-flex sm:inline-flex btn btn-square join-item" id="back">
+    <button class="inline-flex sm:inline-flex btn btn-square join-item" id="back" aria-label="Back">
       <Icons.ChevronLeft class="h-5 w-5" strokeWidth={2.5} />
     </button>
 
-    <button class="hidden sm:inline-flex btn btn-square join-item" id="reload">
+    <button class="hidden sm:inline-flex btn btn-square join-item" id="reload" aria-label="Reload">
       <Icons.RotateCw class="h-5 w-5" strokeWidth={2.5} />
     </button>
 
-    <button class="hidden sm:inline-flex btn btn-square join-item" id="eruda">
+    <button class="hidden sm:inline-flex btn btn-square join-item" id="eruda" aria-label="Eruda">
       <Icons.Wrench class="h-5 w-5" strokeWidth={2.5} />
     </button>
 
-    <input transition:persist="input" type="text" id="input" class="" />
+    <input transition:persist="input" type="text" id="input" class="" aria-label="Search" />
 
-    <button class="hidden sm:inline-flex btn btn-square join-item" id="open">
+    <button class="hidden sm:inline-flex btn btn-square join-item" id="open" aria-label="Open">
       <Icons.ArrowUpRightFromSquare class="h-5 w-5" strokeWidth={2.5} />
     </button>
 
-    <button class=" btn btn-square join-item" id="bookmark">
+    <button class=" btn btn-square join-item" id="bookmark"   aria-label="Bookmark">
       <Icons.Bookmark class="h-5 w-5" id="fav-icn" fill="none" strokeWidth={2.5} id="bm-icon" />
     </button>
 
     <a href="/">
-      <button class="btn btn-square join-item">
+      <button class="btn btn-square join-item" aria-label="Home">
         <Icons.Home class="h-5 w-5" strokeWidth={2.5} />
       </button>
     </a>
