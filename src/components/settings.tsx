@@ -7,6 +7,7 @@ import { cloaks, handleCloak } from '../lib/cloak'
 
 export default function Settings() {
   const [cloak, setCloak] = createSignal<string>('')
+  const [theme, setTheme] = createSignal<string>('')
   const [panicKey, setPanicKey] = createSignal<string>('')
   const [transport, setTransport] = createSignal<string>('')
   const [wispServer, setWispServer] = createSignal<string>('')
@@ -16,10 +17,12 @@ export default function Settings() {
     if (store('panicKey')) setPanicKey(store('panicKey'))
     if (store('transport')) setTransport(store('transport'))
     if (store('wispServer')) setWispServer(store('wispServer'))
+    if (store('theme')) setTheme(store('theme'))
   })
 
   async function save() {
     store('cloak', cloak())
+    store('theme', theme())
     store('panicKey', panicKey())
     store('transport', transport())
     store('wispServer', wispServer())
@@ -27,6 +30,8 @@ export default function Settings() {
     await clearRegistrations()
     await registerSW()
     handleCloak(cloak() as keyof typeof cloaks)
+
+    document.documentElement.dataset.theme = theme()
 
     toast.success('Settings saved', {
       style: {
@@ -52,6 +57,18 @@ export default function Settings() {
             <option value="desmos">Desmos</option>
           </select>
         </Setting>
+
+        <Setting title="Theme">
+          <select class="select w-full max-w-xs" value={theme()} onChange={(e) => setTheme(e.currentTarget.value)}>
+            <option value="atlas">Default</option>
+            <option value="light">Light</option>
+            <option value="aqua">Aqua</option>
+            <option value="pastel">Pastel</option>
+            <option value="dim">Dim</option>
+            <option value="sunset">Sunset</option>
+          </select>
+        </Setting>
+
         <Setting title="Panic Key">
           <input type="text" class="input w-full" value={panicKey()} onInput={(e) => setPanicKey(e.currentTarget.value)} />
         </Setting>

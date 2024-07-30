@@ -19,7 +19,12 @@ export default {
           '--rounded-badge': '0.4rem',
           '--tab-radius': '0.7rem'
         }
-      }
+      },
+      'light',
+      'aqua',
+      'pastel',
+      'dim',
+      'sunset'
     ],
     logs: false
   },
