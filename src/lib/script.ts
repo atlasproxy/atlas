@@ -1,7 +1,9 @@
 import store from 'store2'
 import { clearRegistrations, registerSW, wispUrl } from './sw'
 import { handleCloak, type cloaks } from './cloak'
+import { showModal } from '../components/modal'
 
+store.set('bookmarks', [], false)
 store.set('panicKey', '', false)
 store.set('cloak', 'none', false)
 store.set('transport', '/epoxy/index.mjs', false)

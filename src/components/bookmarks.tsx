@@ -7,7 +7,6 @@ export default function Bookmarks() {
   const [bookmarks, setBookmarks] = createSignal([])
 
   onMount(() => {
-    store.set('bookmarks', [], false)
     setBookmarks(store('bookmarks'))
   })
 
@@ -44,7 +43,7 @@ export default function Bookmarks() {
 
       <Show when={bookmarks().length < 1}>
         <p class="italic text-center">
-          You don't have any bookmarks saved! <br /> Click the bookmark icon when browsing to save it here.
+          You don't have any bookmarks saved! <br /> Click the bookmark icon while browsing to save it here.
         </p>
       </Show>
     </div>

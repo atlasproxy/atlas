@@ -4,6 +4,7 @@ export const prerender = false
 
 const res = await fetch(new URL('/data/shortcuts.json', Astro.url))
 const shortcuts: Shortcut[] = await res.json()
+shortcuts.sort((a, b) => a.title.localeCompare(b.title))
 
 interface Shortcut {
   title: string

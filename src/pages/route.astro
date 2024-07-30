@@ -1,9 +1,11 @@
 ---
 import Base from '../layouts/base.astro'
+import Modal from '../components/modal'
 import * as Icons from 'lucide-solid'
 ---
 
 <Base>
+  <Modal client:load />
   <div class="h-screen w-screen z-40 absolute top-0 left-0">
     <iframe id="frame" class="h-full w-full"></iframe>
   </div>
@@ -46,7 +48,6 @@ import * as Icons from 'lucide-solid'
 
 <script>
   // Initial iframe loading
-  import { navigate } from 'astro:transitions/client'
   import { clearRegistrations, registerSW } from '../lib/sw'
   import store from 'store2'
   // @ts-ignore
@@ -87,7 +88,10 @@ import * as Icons from 'lucide-solid'
 <script>
   // Control handling
   import { encodeXor, formatQuery } from '../lib/formatQuery'
+  import { handleCompatibility } from '../lib/compatibility'
+  import { showModal } from '../components/modal'
   import store from 'store2'
+  import toast from 'solid-toast'
 
   interface ContentWindow extends Window {
     __uv$location: Location
@@ -107,16 +111,9 @@ import * as Icons from 'lucide-solid'
     const input: HTMLInputElement = document.querySelector('input')
     const loader: HTMLDivElement = document.querySelector('#loader')
     const erudaBTN: HTMLButtonElement = document.querySelector('#eruda')
-    let prox: string
-
-    if (store.get('proxy') === 'Scramjet') {
-      prox = '/libs'
-    } else {
-      prox = '/cdn-cgi'
-    }
+    const prefix = store.get('proxy') === 'Scramjet' ? '/libs' : '/cdn-cgi'
 
     let isFav = false
-    let erudaShowing = false
 
     frame.onload = () => {
       if (!('__uv$location' in contentWindow)) return
@@ -125,8 +122,6 @@ import * as Icons from 'lucide-solid'
       input.value = currentUrl
       isFav = false
       loader.style.display = 'none'
-
-      store.set('bookmarks', [], false)
       const shortcuts: any[] = store('bookmarks')
       if (shortcuts.some((value) => value.url == contentWindow.__uv$location.href)) {
         bmIcon.classList.remove('fill-none')
@@ -139,6 +134,10 @@ import * as Icons from 'lucide-solid'
       const erudaScript = contentWindow.document.createElement('script')
       erudaScript.src = 'https://cdn.jsdelivr.net/npm/eruda'
       contentWindow.document.head.appendChild(erudaScript)
+
+      handleCompatibility(new URL(currentUrl), () => {
+        frame.contentWindow.location.reload()
+      })
     }
 
     erudaBTN.onclick = () => {
@@ -155,15 +154,13 @@ import * as Icons from 'lucide-solid'
       if (e.key !== 'Enter') return
 
       const query = input.value
-      frame.src = `${prox}/${encodeXor(formatQuery(query))}`
+      frame.src = `${prefix}/${encodeXor(formatQuery(query))}`
     }
 
     back.onclick = () => contentWindow.history.back()
     reload.onclick = () => contentWindow.location.reload()
 
     bookmark.onclick = () => {
-      store.set('bookmarks', [], false)
-
       const bookmarks: any[] = store('bookmarks')
 
       if (bookmarks.some((value) => value.url == contentWindow.__uv$location.href)) {

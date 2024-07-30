@@ -16,7 +16,6 @@ export async function clearRegistrations() {
 export const wispUrl = import.meta.env.PUBLIC_WISP_PRODUCTION ? `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://api.${window.location.host}/` : `${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}/wisp/` || store.get('wispSrv')
 
 export async function registerSW() {
-  store.set('transport', '/epoxy/index.mjs', false)
   const wispServer = store('wispServer')
   const transport = store('transport')
   if (!('serviceWorker' in navigator)) return
