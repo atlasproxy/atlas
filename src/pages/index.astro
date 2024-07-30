@@ -28,9 +28,12 @@ import * as Icons from 'lucide-solid'
   </div>
 
   <div class="absolute w-screen bottom-0 flex items-center justify-between py-2.5 px-6 text-sm">
-    <div class="flex items-center gap-4">
-      <a class="link link-hover underline-offset-2" href="/legal/terms">Terms of Service</a>
-      <a class="link link-hover underline-offset-2" href="/legal/privacy">Privacy Policy</a>
+    <div class="flex items-center gap-1">
+      <a class="link link-hover underline-offset-2 hidden sm:inline" href="/legal/terms">Terms of Service</a>
+      <a class="link link-hover underline-offset-2 sm:hidden" href="/legal/terms">Terms</a>
+      <Icons.Dot />
+      <a class="link link-hover underline-offset-2 hidden sm:inline" href="/legal/privacy">Privacy Policy</a>
+      <a class="link link-hover underline-offset-2 sm:hidden" href="/legal/privacy">Privacy</a>
     </div>
 
     <div class="flex gap-2">

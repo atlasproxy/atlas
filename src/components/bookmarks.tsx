@@ -11,9 +11,9 @@ export default function Bookmarks() {
   })
 
   return (
-    <div class="flex flex-col items-center gap-4 w-full mt-20">
+    <div class="flex flex-col items-center gap-4 w-full mt-20 px-4">
       {bookmarks().map((bookmark) => (
-        <div class="flex justify-between items-center bg-base-200 hover:bg-base-300 duration-200 h-12 w-[40rem] rounded-box px-6 group">
+        <div class="flex justify-between items-center bg-base-200 hover:bg-base-300 duration-200 h-12 w-full sm:w-[40rem] rounded-box px-6 group">
           <div class="flex items-center gap-4">
             <img src={bookmark.image} class="h-6 w-6 rounded-md" />
             <p
@@ -34,7 +34,7 @@ export default function Bookmarks() {
               )
               setBookmarks(store('bookmarks'))
             }}
-            class="btn btn-square btn-ghost btn-sm opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200"
+            class="btn btn-square btn-ghost btn-sm sm:opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-200"
           >
             <Trash class="h-4 w-4 text-red-400" />
           </button>
