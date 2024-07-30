@@ -8,13 +8,13 @@ import { cloaks, handleCloak } from '../lib/cloak'
 export default function Settings() {
   const [cloak, setCloak] = createSignal<string>('')
   const [theme, setTheme] = createSignal<string>('')
-  const [panicKey, setPanicKey] = createSignal<string>('')
+  const [abortKey, setAbortKey] = createSignal<string>('')
   const [transport, setTransport] = createSignal<string>('')
   const [wispServer, setWispServer] = createSignal<string>('')
 
   onMount(() => {
     if (store('cloak')) setCloak(store('cloak'))
-    if (store('panicKey')) setPanicKey(store('panicKey'))
+    if (store('abortKey')) setAbortKey(store('abortKey'))
     if (store('transport')) setTransport(store('transport'))
     if (store('wispServer')) setWispServer(store('wispServer'))
     if (store('theme')) setTheme(store('theme'))
@@ -23,7 +23,7 @@ export default function Settings() {
   async function save() {
     store('cloak', cloak())
     store('theme', theme())
-    store('panicKey', panicKey())
+    store('abortKey', abortKey())
     store('transport', transport())
     store('wispServer', wispServer())
 
@@ -69,8 +69,8 @@ export default function Settings() {
           </select>
         </Setting>
 
-        <Setting title="Panic Key">
-          <input type="text" class="input w-full" value={panicKey()} onInput={(e) => setPanicKey(e.currentTarget.value)} />
+        <Setting title="Abort Key">
+          <input type="text" class="input w-full" value={abortKey()} onInput={(e) => setAbortKey(e.currentTarget.value)} />
         </Setting>
 
         <Setting title="Transport">
