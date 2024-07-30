@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config'
+import { normalizePath } from 'vite'
 import tailwind from '@astrojs/tailwind'
 import solidJs from '@astrojs/solid-js'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
@@ -38,19 +39,19 @@ export default defineConfig({
       viteStaticCopy({
         targets: [
           {
-            src: [path.resolve(uvPath, 'uv.bundle.js'), path.resolve(uvPath, 'uv.handler.js'), path.resolve(uvPath, 'uv.client.js'), path.resolve(uvPath, 'uv.sw.js')],
+            src: [normalizePath(path.resolve(uvPath, 'uv.bundle.js')), normalizePath(path.resolve(uvPath, 'uv.handler.js')), normalizePath(path.resolve(uvPath, 'uv.client.js')), normalizePath(path.resolve(uvPath, 'uv.sw.js'))],
             dest: 'cdn'
           },
           {
-            src: path.resolve(baremuxPath, 'worker.js'),
+            src: normalizePath(path.resolve(baremuxPath, 'worker.js')),
             dest: 'bare-mux'
           },
           {
-            src: path.resolve(epoxyPath, 'index.mjs'),
+            src: normalizePath(path.resolve(epoxyPath, 'index.mjs')),
             dest: 'epoxy'
           },
           {
-            src: path.resolve(libcurlPath, 'index.mjs'),
+            src: normalizePath(path.resolve(libcurlPath, 'index.mjs')),
             dest: 'libcurl'
           }
         ]
