@@ -71,6 +71,7 @@ import * as Icons from 'lucide-solid'
     const input = document.querySelector('input')
     const btn: HTMLButtonElement = document.querySelector('#enter')
 
+    input.className = 'input bg-base-200 focus:border-transparent focus:outline-none w-80 sm:w-96 join-item'
     input.value = ''
 
     input.onkeydown = (e) => {

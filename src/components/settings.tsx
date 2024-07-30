@@ -47,7 +47,10 @@ export default function Settings() {
 
   return (
     <div class="flex flex-col items-center pt-20">
-      <div class="box-border flex flex-wrap justify-center gap-6 p-8">
+      <button class="btn inline sm:hidden btn-primary font-semibold mt-5 w-48" onClick={save}>
+        Save
+      </button>
+      <div class="box-border flex flex-wrap justify-center gap-2 sm:gap-6 p-8">
         <Setting title="Cloak">
           <select class="select w-full max-w-xs" value={cloak()} onChange={(e) => setCloak(e.currentTarget.value)}>
             <option value="none">None</option>
@@ -85,7 +88,7 @@ export default function Settings() {
         </Setting>
       </div>
 
-      <button class="btn btn-primary font-semibold w-48" onClick={save}>
+      <button class="btn hidden sm:inline btn-primary font-semibold w-48" onClick={save}>
         Save
       </button>
     </div>

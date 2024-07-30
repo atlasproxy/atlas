@@ -23,7 +23,7 @@ import * as Icons from 'lucide-solid'
       <Icons.Wrench class="h-5 w-5" strokeWidth={2.5} />
     </button>
 
-    <input transition:persist="input" type="text" id="input" class="input  bg-base-200 focus:border-none focus:outline-none w-68 sm:w-80 sm:2-96 text-center sm:text-left" />
+    <input transition:persist="input" type="text" id="input" class="" />
 
     <button class="hidden sm:inline-flex btn btn-square join-item" id="open">
       <Icons.ArrowUpRightFromSquare class="h-5 w-5" strokeWidth={2.5} />
@@ -58,6 +58,7 @@ import * as Icons from 'lucide-solid'
 
     const frame: any = document.getElementById('frame')
     const input = document.querySelector('input')
+    input.className = 'input bg-base-200 focus:border-none focus:outline-none w-68 sm:w-80 sm:2-96 text-center sm:text-left';
     const urlParams = new URLSearchParams(window.location.search)
     let prox: string
     if (store.get('proxy') === 'Scramjet') {
