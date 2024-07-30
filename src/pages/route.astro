@@ -162,7 +162,10 @@ import * as Icons from 'lucide-solid'
 
     bookmark.onclick = () => {
       const bookmarks: any[] = store('bookmarks')
-
+      if (!contentWindow.__uv$location) {
+        toast.error('Failed to bookmark (No URL)')
+        return
+      }
       if (bookmarks.some((value) => value.url == contentWindow.__uv$location.href)) {
         store(
           'bookmarks',
