@@ -8,5 +8,30 @@
     "title": "Google Search",
     "image": "https://www.keyweo.com/wp-content/uploads/2022/04/google-logo-history.jpg",
     "url": "https://google.com"
+  },
+  {
+    "title": "Amazon",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3681uVLYlNHmaFSRqf0XGZED3R8un3NaIFg&s",
+    "url": "https://amazon.com"
+  },
+  {
+    "title": "Cool Math Games",
+    "image": "https://www.coolmathgames.com/themes/custom/coolmath/assets/images/CMG_OG_image.png",
+    "url": "https://coolmathgames.com"
+  },
+  {
+    "title": "GitHub",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAZuRz6Z2StcpA-BDe9s97iqadyDdALOu0Jw&s",
+    "url": "https://github.com"
+  },
+  {
+    "title": "Pinterest",
+    "image": "https://assets.turbologo.com/blog/en/2021/11/14085702/Pinterest-Logo-2016-1.png",
+    "url": "https://pinterest.com"
+  },
+  {
+    "title": "Chess",
+    "image": "https://images.chesscomfiles.com/uploads/v1/blog/291978.333e4ddb.668x375o.576e795e2298@2x.png",
+    "url": "https://chess.com"
   }
 ]
