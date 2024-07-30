@@ -47,7 +47,7 @@ export default function Settings() {
 
   return (
     <div class="flex flex-col items-center pt-20">
-      <button class="btn inline sm:hidden btn-primary font-semibold mt-5 w-48" onClick={save}>
+      <button class="btn inline sm:hidden btn-primary font-semibold mt-5 w-48" onClick={save} aria-label="Save">
         Save
       </button>
       <div class="box-border flex flex-wrap justify-center gap-2 sm:gap-6 p-8">
@@ -73,7 +73,7 @@ export default function Settings() {
         </Setting>
 
         <Setting title="Abort Key">
-          <input type="text" class="input w-full" value={abortKey()} onInput={(e) => setAbortKey(e.currentTarget.value)} />
+          <input type="text" class="input w-full" value={abortKey()} onInput={(e) => setAbortKey(e.currentTarget.value)} aria-label="Abort Key" />
         </Setting>
 
         <Setting title="Transport">
@@ -84,11 +84,11 @@ export default function Settings() {
         </Setting>
 
         <Setting title="Wisp Server">
-          <input type="text" value={wispServer()} class="input w-full" onInput={(e) => setWispServer(e.target.value)} />
+          <input type="text" value={wispServer()} class="input w-full" onInput={(e) => setWispServer(e.target.value)} aria-label="Wisp Server" />
         </Setting>
       </div>
 
-      <button class="btn hidden sm:inline btn-primary font-semibold w-48" onClick={save}>
+      <button class="btn hidden sm:inline btn-primary font-semibold w-48" onClick={save} aria-label="Save">
         Save
       </button>
     </div>

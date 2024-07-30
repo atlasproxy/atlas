@@ -26,7 +26,7 @@ export default function Bookmarks() {
             </p>
           </div>
 
-          <button
+          <button aria-label="Delete bookmark"
             onClick={() => {
               store(
                 'bookmarks',

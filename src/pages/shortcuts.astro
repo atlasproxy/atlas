@@ -25,7 +25,7 @@ interface Shortcut {
             <h2 class="card-title text-3xl font-bold text-base-content">{shortcut.title}</h2>
             <div class="card-actions absolute bottom-4 right-4 justify-end">
               <a href={`/route?q=${encodeURIComponent(btoa(shortcut.url))}`}>
-                <button class="btn btn-primary ">Launch</button>
+                <button class="btn btn-primary " aria-label="Launch">Launch</button>
               </a>
             </div>
           </div>
